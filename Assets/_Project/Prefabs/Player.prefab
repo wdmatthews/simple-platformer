@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 17290368700161098}
   - component: {fileID: 17290368700161099}
   - component: {fileID: 17290368700161095}
+  - component: {fileID: 5132177995762942620}
   - component: {fileID: 17290368700161092}
   - component: {fileID: 17290368700161093}
   - component: {fileID: 17290368700161096}
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 5d630f88680424b07bd4d67df85a0f1c, type: 2}
   _rigidbody: {fileID: 17290368700161092}
+  _groundChecker: {fileID: 5132177995762942620}
 --- !u!114 &17290368700161095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,6 +85,23 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5132177995762942620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17290368700161097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62627cf220d4e4741b4d9a5f81fc21c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: {x: 0.9, y: 0.1}
+  _offset: 0.5
+  _groundLayers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!50 &17290368700161092
 Rigidbody2D:
   serializedVersion: 4

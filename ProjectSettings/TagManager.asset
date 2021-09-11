@@ -14,7 +14,7 @@ TagManager:
   - 
   - 
   - Character
-  - 
+  - Ground
   - 
   - 
   - 
@@ -38,6 +38,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 3142776093
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
