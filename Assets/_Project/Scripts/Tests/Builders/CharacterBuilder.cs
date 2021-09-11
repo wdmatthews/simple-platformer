@@ -2,7 +2,7 @@ using UnityEngine;
 using Project.Characters;
 using Project.Tests.Characters;
 
-namespace Project.Tests
+namespace Project.Tests.Builders
 {
     public class CharacterBuilder
     {

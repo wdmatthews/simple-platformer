@@ -1,10 +1,7 @@
 {
-    "name": "Project.Tests",
-    "rootNamespace": "Project.Tests",
-    "references": [
-        "GUID:e139f6139f1444b26b7d562448cfa973",
-        "GUID:a2e36a9ecb923474488e88dccd27cf40"
-    ],
+    "name": "Project.Collectibles",
+    "rootNamespace": "Project.Collectibles",
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

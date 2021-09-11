@@ -3,6 +3,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TestTools;
+using Project.Tests.Builders;
 using Project.Tests.Characters;
 
 namespace Project.Tests.PlayMode
