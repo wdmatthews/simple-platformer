@@ -65,5 +65,13 @@ namespace Project.Tests.PlayMode
             character.Move(1);
             Assert.AreEqual(0, character.transform.eulerAngles.y);
         }
+
+        [Test]
+        public void Jump_SetsYVelocity_JumpSpeed()
+        {
+            TestCharacter character = A.Character;
+            character.Jump();
+            Assert.AreEqual(character.Data.JumpSpeed, character.Rigidbody.velocity.y);
+        }
     }
 }

@@ -7,7 +7,6 @@ namespace Project.Tests
     public class PlayerBuilder
     {
         private CharacterSO _data = null;
-        private float _gravityScale = 0;
 
         public PlayerBuilder WithData(CharacterSO data)
         {
@@ -15,18 +14,11 @@ namespace Project.Tests
             return this;
         }
 
-        public PlayerBuilder WithGravityScale(float gravityScale)
-        {
-            _gravityScale = gravityScale;
-            return this;
-        }
-
         public TestPlayer Build()
         {
             GameObject gameObject = new GameObject();
-            Rigidbody2D rigidbody = gameObject.AddComponent<Rigidbody2D>();
-            rigidbody.gravityScale = _gravityScale;
             TestPlayer player = gameObject.AddComponent<TestPlayer>();
+            player.GetComponent<GroundChecker>().enabled = false;
             player.Data = _data ? _data : CharacterBuilder.DefaultData;
             return player;
         }

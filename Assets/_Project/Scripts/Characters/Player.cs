@@ -13,5 +13,10 @@ namespace Project.Characters
         {
             Move(context.ReadValue<float>());
         }
+
+        public void Jump(InputAction.CallbackContext context)
+        {
+            _shouldJump = Mathf.Approximately(context.ReadValue<float>(), 1);
+        }
     }
 }

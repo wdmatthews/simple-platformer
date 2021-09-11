@@ -6,5 +6,7 @@ namespace Project.Characters
     public class CharacterSO : ScriptableObject
     {
         public float MoveSpeed = 1;
+        public float JumpSpeed = 1;
+        public float GravityScale = 1;
     }
 }

@@ -12,10 +12,10 @@ namespace Project.Tests
         {
             get
             {
-                if (_defaultData == null)
+                if (!_defaultData)
                 {
                     _defaultData = ScriptableObject.CreateInstance<CharacterSO>();
-                    _defaultData.MoveSpeed = 1;
+                    _defaultData.GravityScale = 0;
                 }
 
                 return _defaultData;
@@ -23,7 +23,6 @@ namespace Project.Tests
         }
 
         private CharacterSO _data = null;
-        private float _gravityScale = 0;
 
         public CharacterBuilder WithData(CharacterSO data)
         {
@@ -31,18 +30,11 @@ namespace Project.Tests
             return this;
         }
 
-        public CharacterBuilder WithGravityScale(float gravityScale)
-        {
-            _gravityScale = gravityScale;
-            return this;
-        }
-
         public TestCharacter Build()
         {
             GameObject gameObject = new GameObject();
-            Rigidbody2D rigidbody = gameObject.AddComponent<Rigidbody2D>();
-            rigidbody.gravityScale = _gravityScale;
             TestCharacter character = gameObject.AddComponent<TestCharacter>();
+            character.GetComponent<GroundChecker>().enabled = false;
             character.Data = _data ? _data : DefaultData;
             return character;
         }

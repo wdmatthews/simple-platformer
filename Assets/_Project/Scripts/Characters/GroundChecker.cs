@@ -7,7 +7,7 @@ namespace Project.Characters
     public class GroundChecker : MonoBehaviour
     {
         [SerializeField] private Vector2 _size = new Vector2(0.9f, 0.1f);
-        [SerializeField] private float _offset = 0;
+        [SerializeField] private float _offset = -0.5f;
         [SerializeField] private LayerMask _groundLayers = 0;
 
         private bool _isGrounded = false;
@@ -17,7 +17,7 @@ namespace Project.Characters
             get
             {
                 _isGrounded = Physics2D.BoxCast(transform.position, _size, 0, Vector2.down, _offset, _groundLayers);
-                return _isGrounded;
+                return !enabled || _isGrounded;
             }
         }
 

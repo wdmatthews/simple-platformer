@@ -1,6 +1,8 @@
+using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TestTools;
 using Project.Tests.Characters;
 
 namespace Project.Tests.PlayMode
@@ -19,13 +21,21 @@ namespace Project.Tests.PlayMode
 
         private static void AddMoveAction(PlayerInput playerInput, TestPlayer player)
         {
-            InputAction moveAction = playerInput.currentActionMap.AddAction("Move", InputActionType.Value);
-            moveAction
+            InputAction action = playerInput.currentActionMap.AddAction("Move", InputActionType.Value);
+            action
                 .AddCompositeBinding("Axis")
                 .With("Negative", "<Keyboard>/a")
                 .With("Positive", "<Keyboard>/d");
-            moveAction.Enable();
-            moveAction.performed += player.Move;
+            action.Enable();
+            action.performed += player.Move;
+        }
+
+        private static void AddJumpAction(PlayerInput playerInput, TestPlayer player)
+        {
+            InputAction action = playerInput.currentActionMap.AddAction("Jump", InputActionType.Button);
+            action.AddBinding("<Keyboard>/w");
+            action.Enable();
+            action.performed += player.Jump;
         }
 
         [Test]
@@ -48,6 +58,19 @@ namespace Project.Tests.PlayMode
             AddMoveAction(playerInput, player);
             Press(keyboard.dKey);
             Assert.AreEqual(1, player.MoveDirection);
+        }
+
+        [UnityTest]
+        public IEnumerator Jump_SetsYVelocity_JumpSpeed()
+        {
+            Keyboard keyboard = InputSystem.AddDevice<Keyboard>();
+            TestPlayer player = A.Player;
+            PlayerInput playerInput = GetPlayerInput(player);
+            AddJumpAction(playerInput, player);
+            Press(keyboard.wKey);
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(player.Data.JumpSpeed, player.Rigidbody.velocity.y);
+            yield return null;
         }
     }
 }

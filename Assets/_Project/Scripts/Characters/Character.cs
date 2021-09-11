@@ -4,6 +4,7 @@ namespace Project.Characters
 {
     [AddComponentMenu("Project/Characters/Character")]
     [DisallowMultipleComponent]
+    [RequireComponent(typeof(GroundChecker))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class Character : MonoBehaviour
     {
@@ -12,11 +13,17 @@ namespace Project.Characters
         [SerializeField] protected GroundChecker _groundChecker = null;
 
         protected float _moveDirection = 0;
+        protected bool _shouldJump = false;
 
         protected void Awake()
         {
             if (!_rigidbody) _rigidbody = GetComponent<Rigidbody2D>();
             if (!_groundChecker) _groundChecker = GetComponent<GroundChecker>();
+        }
+
+        protected void Start()
+        {
+            _rigidbody.gravityScale = _data.GravityScale;
         }
 
         protected void FixedUpdate()
@@ -26,7 +33,7 @@ namespace Project.Characters
                 _rigidbody.velocity.y
             );
 
-            Debug.Log(_groundChecker.IsGrounded);
+            if (_shouldJump && _groundChecker.IsGrounded) Jump();
         }
 
         public void Move(float direction)
@@ -43,6 +50,14 @@ namespace Project.Characters
             }
 
             _moveDirection = direction;
+        }
+
+        public void Jump()
+        {
+            _rigidbody.velocity = new Vector2(
+                _rigidbody.velocity.x,
+                _data.JumpSpeed
+            );
         }
     }
 }
