@@ -15,3 +15,4 @@ MonoBehaviour:
   MoveSpeed: 4
   JumpSpeed: 12
   GravityScale: 3
+  MaxHealth: 3

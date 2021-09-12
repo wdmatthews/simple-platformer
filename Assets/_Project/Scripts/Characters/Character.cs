@@ -14,6 +14,8 @@ namespace Project.Characters
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
+        protected float _health = 0;
+        protected bool _isDead = false;
 
         protected void Awake()
         {
@@ -24,6 +26,7 @@ namespace Project.Characters
         protected void Start()
         {
             _rigidbody.gravityScale = _data.GravityScale;
+            _health = _data.MaxHealth;
         }
 
         protected void FixedUpdate()
@@ -58,6 +61,17 @@ namespace Project.Characters
                 _rigidbody.velocity.x,
                 _data.JumpSpeed
             );
+        }
+
+        public void TakeDamage(float amount)
+        {
+            _health = Mathf.Clamp(_health - amount, 0, _data.MaxHealth);
+            if (Mathf.Approximately(_health, 0)) Die();
+        }
+
+        public void Die()
+        {
+            _isDead = true;
         }
     }
 }
