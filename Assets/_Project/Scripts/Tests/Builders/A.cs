@@ -5,5 +5,6 @@ namespace Project.Tests.Builders
         public static CharacterBuilder Character => new CharacterBuilder();
         public static PlayerBuilder Player => new PlayerBuilder();
         public static CollectibleBuilder Collectible => new CollectibleBuilder();
+        public static DoorBuilder Door => new DoorBuilder();
     }
 }

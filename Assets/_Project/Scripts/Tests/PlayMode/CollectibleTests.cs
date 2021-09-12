@@ -1,7 +1,4 @@
-using System.Collections;
 using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
 using Project.Tests.Builders;
 using Project.Tests.Collectibles;
 

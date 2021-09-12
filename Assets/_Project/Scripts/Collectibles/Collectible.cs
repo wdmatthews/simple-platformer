@@ -7,25 +7,21 @@ namespace Project.Collectibles
     [RequireComponent(typeof(CircleCollider2D))]
     public class Collectible : MonoBehaviour
     {
-        [SerializeField] protected CollectibleSO _data = null;
+        [SerializeField] protected string _characterLayerName = "Character";
         [SerializeField] protected CircleCollider2D _collider = null;
 
-        protected int _collectorLayer = 0;
+        protected int _characterLayer = 0;
         protected bool _wasCollected = false;
 
         protected void Awake()
         {
             if (!_collider) _collider = GetComponent<CircleCollider2D>();
-        }
-
-        protected void Start()
-        {
-            _collectorLayer = LayerMask.NameToLayer(_data.CollectorLayer);
+            _characterLayer = LayerMask.NameToLayer(_characterLayerName);
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!_wasCollected && collision.gameObject.layer == _collectorLayer) Collect();
+            if (!_wasCollected && collision.gameObject.layer == _characterLayer) Collect();
         }
 
         public void Collect()

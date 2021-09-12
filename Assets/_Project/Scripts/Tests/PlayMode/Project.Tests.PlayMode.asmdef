@@ -8,6 +8,7 @@
         "UnityEngine.TestRunner",
         "Project.Characters",
         "Project.Collectibles",
+        "Project.Environment",
         "Project.Tests"
     ],
     "includePlatforms": [],
