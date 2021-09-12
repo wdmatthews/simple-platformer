@@ -79,8 +79,8 @@ namespace Project.Tests.PlayMode
             TestCharacter character = A.Character;
             yield return null;
             Assert.AreEqual(character.Data.MaxHealth, character.Health);
-            character.TakeDamage(0.5f);
-            Assert.AreEqual(character.Data.MaxHealth - 0.5f, character.Health);
+            character.TakeDamage(character.Data.MaxHealth / 2);
+            Assert.AreEqual(character.Data.MaxHealth / 2, character.Health);
         }
 
         [UnityTest]
@@ -91,6 +91,58 @@ namespace Project.Tests.PlayMode
             character.TakeDamage(character.Data.MaxHealth);
             Assert.AreEqual(0, character.Health);
             Assert.AreEqual(true, character.IsDead);
+        }
+
+        [UnityTest]
+        public IEnumerator TakeDamage_MakesInvincible()
+        {
+            TestCharacter character = A.Character;
+            yield return null;
+            character.TakeDamage(character.Data.MaxHealth / 2);
+            Assert.AreEqual(true, character.IsInvincible);
+        }
+
+        [UnityTest]
+        public IEnumerator TakeDamage_NotInvincibleIfDead()
+        {
+            TestCharacter character = A.Character;
+            yield return null;
+            character.TakeDamage(character.Data.MaxHealth);
+            Assert.AreEqual(0, character.Health);
+            Assert.AreEqual(true, character.IsDead);
+            Assert.AreEqual(false, character.IsInvincible);
+        }
+
+        [UnityTest]
+        public IEnumerator MakeInvincible_ResetsInvincibleTimer()
+        {
+            TestCharacter character = A.Character;
+            yield return null;
+            character.MakeInvincibile();
+            Assert.AreEqual(character.Data.InvincibleDuration, character.InvincibleTimer);
+        }
+
+        [UnityTest]
+        public IEnumerator MakeInvincible_InvincibilityGoesAwayAfterDuration()
+        {
+            TestCharacter character = A.Character;
+            yield return null;
+            character.MakeInvincibile();
+            Assert.AreEqual(true, character.IsInvincible);
+            yield return new WaitForSeconds(character.Data.InvincibleDuration);
+            yield return null;
+            Assert.AreEqual(false, character.IsInvincible);
+        }
+
+        [UnityTest]
+        public IEnumerator RemoveInvincibility_RemovesInvincibility()
+        {
+            TestCharacter character = A.Character;
+            yield return null;
+            character.MakeInvincibile();
+            Assert.AreEqual(true, character.IsInvincible);
+            character.RemoveInvincibility();
+            Assert.AreEqual(false, character.IsInvincible);
         }
     }
 }

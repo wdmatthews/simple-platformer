@@ -16,6 +16,8 @@ namespace Project.Characters
         protected bool _shouldJump = false;
         protected float _health = 0;
         protected bool _isDead = false;
+        protected bool _isInvincible = false;
+        protected float _invincibleTimer = 0;
 
         protected void Awake()
         {
@@ -27,6 +29,15 @@ namespace Project.Characters
         {
             _rigidbody.gravityScale = _data.GravityScale;
             _health = _data.MaxHealth;
+        }
+
+        protected void Update()
+        {
+            if (_isInvincible)
+            {
+                if (Mathf.Approximately(_invincibleTimer, 0)) RemoveInvincibility();
+                else _invincibleTimer = Mathf.Clamp(_invincibleTimer - Time.deltaTime, 0, _data.InvincibleDuration);
+            }
         }
 
         protected void FixedUpdate()
@@ -65,13 +76,27 @@ namespace Project.Characters
 
         public void TakeDamage(float amount)
         {
+            if (_isInvincible) return;
             _health = Mathf.Clamp(_health - amount, 0, _data.MaxHealth);
+
             if (Mathf.Approximately(_health, 0)) Die();
+            else MakeInvincibile();
         }
 
         public void Die()
         {
             _isDead = true;
+        }
+
+        public void MakeInvincibile()
+        {
+            _isInvincible = true;
+            _invincibleTimer = _data.InvincibleDuration;
+        }
+
+        public void RemoveInvincibility()
+        {
+            _isInvincible = false;
         }
     }
 }
