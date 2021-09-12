@@ -6,5 +6,7 @@ namespace Project.Environment
     public class HazardSO : ScriptableObject
     {
         public float Damage = 1;
+        public float MoveSpeed = 0;
+        public float PauseDuration = 0;
     }
 }

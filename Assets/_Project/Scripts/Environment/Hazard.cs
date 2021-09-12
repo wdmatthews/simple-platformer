@@ -11,12 +11,12 @@ namespace Project.Environment
         protected int _characterLayer = 0;
         protected Character _characterInTrigger = null;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _characterLayer = LayerMask.NameToLayer(_characterLayerName);
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             if (_characterInTrigger) DamageCharacter(_characterInTrigger);
         }
