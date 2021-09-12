@@ -9,5 +9,6 @@ namespace Project.Tests.Builders
         public static SpikeBuilder Spike => new SpikeBuilder();
         public static LiquidBuilder Liquid => new LiquidBuilder();
         public static SawBuilder Saw => new SawBuilder();
+        public static ButtonBuilder Button => new ButtonBuilder();
     }
 }
