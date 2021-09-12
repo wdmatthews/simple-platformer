@@ -7,5 +7,6 @@ namespace Project.Tests.Builders
         public static CollectibleBuilder Collectible => new CollectibleBuilder();
         public static DoorBuilder Door => new DoorBuilder();
         public static SpikeBuilder Spike => new SpikeBuilder();
+        public static LiquidBuilder Liquid => new LiquidBuilder();
     }
 }
