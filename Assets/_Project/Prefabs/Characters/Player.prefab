@@ -51,6 +51,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 5d630f88680424b07bd4d67df85a0f1c, type: 2}
   _rigidbody: {fileID: 17290368700161092}
   _groundChecker: {fileID: 5132177995762942620}
+  _damageCharacterChannel: {fileID: 11400000, guid: 3a3eb616d0358472fb9b4f84d7c92297, type: 2}
 --- !u!114 &17290368700161095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1529850979
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
