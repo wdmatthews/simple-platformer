@@ -14,6 +14,7 @@ namespace Project.Characters
         [SerializeField] protected LayerChecker _groundChecker = null;
         [SerializeField] protected LayerChecker _oneWayPlatformChecker = null;
         [SerializeField] protected BoxCollider2D _collider = null;
+        [SerializeField] protected LayerChecker _ladderChecker = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -24,6 +25,8 @@ namespace Project.Characters
         protected bool _shouldDrop = false;
         protected bool _isDropping = false;
         protected Collider2D _oneWayPlatform = null;
+        protected bool _isClimbing = false;
+        protected float _climbDirection = 0;
 
         protected void Awake()
         {
@@ -54,14 +57,32 @@ namespace Project.Characters
                 _rigidbody.velocity.y
             );
 
-            bool isGrounded = _groundChecker.IsTouching;
-            bool isTouchingOneWayPlatform = _oneWayPlatformChecker.IsTouching;
+            bool isTouchingLadder = _ladderChecker.IsTouching;
 
-            if (_shouldJump && isGrounded
-                && Mathf.Approximately(_rigidbody.velocity.y, 0)) Jump();
-            if (_shouldDrop && isGrounded
-                && !_isDropping && isTouchingOneWayPlatform) StartDrop();
-            else if (_isDropping && !isTouchingOneWayPlatform) StopDrop();
+            if (_isClimbing)
+            {
+                if (isTouchingLadder)
+                {
+                    _rigidbody.velocity = new Vector2(
+                        _rigidbody.velocity.x,
+                        _climbDirection * _data.MoveSpeed
+                    );
+                }
+                else StopClimb();
+            }
+            else
+            {
+                bool isGrounded = _groundChecker.IsTouching;
+                bool isTouchingOneWayPlatform = _oneWayPlatformChecker.IsTouching;
+
+                if (_shouldJump && isGrounded
+                    && Mathf.Approximately(_rigidbody.velocity.y, 0)) Jump();
+                if (_shouldDrop && isGrounded
+                    && !_isDropping && isTouchingOneWayPlatform) StartDrop();
+                else if (_isDropping && !isTouchingOneWayPlatform) StopDrop();
+                if (!Mathf.Approximately(_climbDirection, 0)
+                    && !_isClimbing && isTouchingLadder) StartClimb();
+            }
         }
 
         public void Move(float direction)
@@ -89,6 +110,11 @@ namespace Project.Characters
             );
         }
 
+        public void Climb(float direction)
+        {
+            _climbDirection = direction;
+        }
+
         public void TakeDamage(float amount)
         {
             if (_isInvincible) return;
@@ -114,18 +140,31 @@ namespace Project.Characters
             _isInvincible = false;
         }
 
-        public void StartDrop()
+        protected void StartDrop()
         {
             _isDropping = true;
             _oneWayPlatform = _oneWayPlatformChecker.TouchedCollider;
             Physics2D.IgnoreCollision(_collider, _oneWayPlatform);
         }
 
-        public void StopDrop()
+        protected void StopDrop()
         {
             _isDropping = false;
             Physics2D.IgnoreCollision(_collider, _oneWayPlatform, false);
             _oneWayPlatform = null;
+        }
+
+        protected void StartClimb()
+        {
+            _isClimbing = true;
+            _rigidbody.gravityScale = 0;
+            if (_isDropping) StopDrop();
+        }
+
+        protected void StopClimb()
+        {
+            _isClimbing = false;
+            _rigidbody.gravityScale = _data.GravityScale;
         }
     }
 }

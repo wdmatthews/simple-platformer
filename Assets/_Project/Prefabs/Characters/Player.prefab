@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 17290368700161095}
   - component: {fileID: 5132177995762942620}
   - component: {fileID: 571231633844481689}
+  - component: {fileID: 5471182422430838411}
   - component: {fileID: 17290368700161092}
   - component: {fileID: 17290368700161093}
   - component: {fileID: 17290368700161096}
@@ -54,6 +55,7 @@ MonoBehaviour:
   _groundChecker: {fileID: 5132177995762942620}
   _oneWayPlatformChecker: {fileID: 571231633844481689}
   _collider: {fileID: 17290368700161093}
+  _ladderChecker: {fileID: 5471182422430838411}
 --- !u!114 &17290368700161095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +129,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 87bd4937-5998-4680-bbcf-66a1882629eb
     m_ActionName: Gameplay/Drop[/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 17290368700161099}
+        m_TargetAssemblyTypeName: Project.Characters.Player, Project.Characters
+        m_MethodName: Climb
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d2f1008b-f440-4685-80e5-6f71bac02b22
+    m_ActionName: Gameplay/Climb[/Keyboard/s,/Keyboard/w]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: Gameplay
@@ -148,7 +166,7 @@ MonoBehaviour:
   _offset: 0.55
   _layers:
     serializedVersion: 2
-    m_Bits: 1536
+    m_Bits: 3584
 --- !u!114 &571231633844481689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,6 +184,23 @@ MonoBehaviour:
   _layers:
     serializedVersion: 2
     m_Bits: 1024
+--- !u!114 &5471182422430838411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 17290368700161097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62627cf220d4e4741b4d9a5f81fc21c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: {x: 0.9, y: 1}
+  _offset: 0
+  _layers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!50 &17290368700161092
 Rigidbody2D:
   serializedVersion: 4

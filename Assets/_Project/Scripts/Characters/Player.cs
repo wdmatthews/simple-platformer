@@ -23,5 +23,10 @@ namespace Project.Characters
         {
             _shouldDrop = Mathf.Approximately(context.ReadValue<float>(), 1);
         }
+
+        public void Climb(InputAction.CallbackContext context)
+        {
+            Climb(context.ReadValue<float>());
+        }
     }
 }
