@@ -11,7 +11,6 @@ namespace Project.Characters
         [SerializeField] protected CharacterSO _data = null;
         [SerializeField] protected Rigidbody2D _rigidbody = null;
         [SerializeField] protected GroundChecker _groundChecker = null;
-        [SerializeField] protected CharacterFloatEventChannelSO _damageCharacterChannel = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -28,16 +27,6 @@ namespace Project.Characters
         {
             _rigidbody.gravityScale = _data.GravityScale;
             _health = _data.MaxHealth;
-        }
-
-        protected void OnEnable()
-        {
-            _damageCharacterChannel.OnRaise += OnDamageCharacter;
-        }
-
-        protected void OnDisable()
-        {
-            _damageCharacterChannel.OnRaise -= OnDamageCharacter;
         }
 
         protected void FixedUpdate()
@@ -83,12 +72,6 @@ namespace Project.Characters
         public void Die()
         {
             _isDead = true;
-        }
-
-        protected void OnDamageCharacter(Character character, float amount)
-        {
-            if (character != this) return;
-            TakeDamage(amount);
         }
     }
 }

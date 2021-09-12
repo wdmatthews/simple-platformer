@@ -7,7 +7,6 @@ namespace Project.Environment
     {
         [SerializeField] protected HazardSO _data = null;
         [SerializeField] protected string _characterLayerName = "Character";
-        [SerializeField] protected CharacterFloatEventChannelSO _damageCharacterChannel = null;
 
         protected int _characterLayer = 0;
 
@@ -20,8 +19,13 @@ namespace Project.Environment
         {
             if (collision.gameObject.layer == _characterLayer)
             {
-                _damageCharacterChannel.Raise(collision.GetComponent<Character>(), _data.Damage);
+                DamageCharacter(collision.GetComponent<Character>());
             }
+        }
+
+        public void DamageCharacter(Character character)
+        {
+            character.TakeDamage(_data.Damage);
         }
     }
 }

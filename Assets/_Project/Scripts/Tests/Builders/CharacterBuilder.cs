@@ -16,6 +16,7 @@ namespace Project.Tests.Builders
                 {
                     _defaultData = ScriptableObject.CreateInstance<CharacterSO>();
                     _defaultData.GravityScale = 0;
+                    _defaultData.MaxHealth = 3;
                 }
 
                 return _defaultData;
