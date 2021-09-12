@@ -34,7 +34,6 @@ namespace Project.Tests.Builders
         {
             GameObject gameObject = new GameObject();
             TestCharacter character = gameObject.AddComponent<TestCharacter>();
-            character.GetComponent<GroundChecker>().enabled = false;
             character.Data = _data ? _data : DefaultData;
             return character;
         }

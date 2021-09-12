@@ -17,7 +17,7 @@ namespace Project.Characters
             get
             {
                 _isGrounded = Physics2D.BoxCast(transform.position, _size, 0, Vector2.down, _offset, _groundLayers);
-                return !enabled || _isGrounded;
+                return _isGrounded;
             }
         }
 

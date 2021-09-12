@@ -1,8 +1,6 @@
-using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TestTools;
 using Project.Tests.Builders;
 using Project.Tests.Characters;
 
@@ -61,17 +59,15 @@ namespace Project.Tests.PlayMode
             Assert.AreEqual(1, player.MoveDirection);
         }
 
-        [UnityTest]
-        public IEnumerator Jump_SetsYVelocity_JumpSpeed()
+        [Test]
+        public void Jump_SetsShouldJump_True()
         {
             Keyboard keyboard = InputSystem.AddDevice<Keyboard>();
             TestPlayer player = A.Player;
             PlayerInput playerInput = GetPlayerInput(player);
             AddJumpAction(playerInput, player);
             Press(keyboard.wKey);
-            yield return new WaitForFixedUpdate();
-            Assert.AreEqual(player.Data.JumpSpeed, player.Rigidbody.velocity.y);
-            yield return null;
+            Assert.AreEqual(true, player.ShouldJump);
         }
     }
 }

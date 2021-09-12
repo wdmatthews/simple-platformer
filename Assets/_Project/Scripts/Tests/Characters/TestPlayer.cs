@@ -9,5 +9,6 @@ namespace Project.Tests.Characters
         public Rigidbody2D Rigidbody => _rigidbody;
 
         public float MoveDirection => _moveDirection;
+        public bool ShouldJump => _shouldJump;
     }
 }

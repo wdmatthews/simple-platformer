@@ -18,7 +18,6 @@ namespace Project.Tests.Builders
         {
             GameObject gameObject = new GameObject();
             TestPlayer player = gameObject.AddComponent<TestPlayer>();
-            player.GetComponent<GroundChecker>().enabled = false;
             player.Data = _data ? _data : CharacterBuilder.DefaultData;
             return player;
         }
