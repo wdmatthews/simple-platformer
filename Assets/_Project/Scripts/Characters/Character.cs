@@ -4,13 +4,16 @@ namespace Project.Characters
 {
     [AddComponentMenu("Project/Characters/Character")]
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(GroundChecker))]
+    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(LayerChecker))]
     [RequireComponent(typeof(Rigidbody2D))]
     public class Character : MonoBehaviour
     {
         [SerializeField] protected CharacterSO _data = null;
         [SerializeField] protected Rigidbody2D _rigidbody = null;
-        [SerializeField] protected GroundChecker _groundChecker = null;
+        [SerializeField] protected LayerChecker _groundChecker = null;
+        [SerializeField] protected LayerChecker _oneWayPlatformChecker = null;
+        [SerializeField] protected BoxCollider2D _collider = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -18,11 +21,15 @@ namespace Project.Characters
         protected bool _isDead = false;
         protected bool _isInvincible = false;
         protected float _invincibleTimer = 0;
+        protected bool _shouldDrop = false;
+        protected bool _isDropping = false;
+        protected Collider2D _oneWayPlatform = null;
 
         protected void Awake()
         {
             if (!_rigidbody) _rigidbody = GetComponent<Rigidbody2D>();
-            if (!_groundChecker) _groundChecker = GetComponent<GroundChecker>();
+            if (!_groundChecker) _groundChecker = GetComponent<LayerChecker>();
+            if (!_collider) _collider = GetComponent<BoxCollider2D>();
         }
 
         protected void Start()
@@ -47,14 +54,22 @@ namespace Project.Characters
                 _rigidbody.velocity.y
             );
 
-            if (_shouldJump && _groundChecker.IsGrounded) Jump();
+            bool isGrounded = _groundChecker.IsTouching;
+            bool isTouchingOneWayPlatform = _oneWayPlatformChecker.IsTouching;
+
+            if (_shouldJump && isGrounded
+                && Mathf.Approximately(_rigidbody.velocity.y, 0)) Jump();
+            if (_shouldDrop && isGrounded
+                && !_isDropping && isTouchingOneWayPlatform) StartDrop();
+            else if (_isDropping && !isTouchingOneWayPlatform) StopDrop();
         }
 
         public void Move(float direction)
         {
             bool shouldFlip = !Mathf.Approximately(direction, 0)
                 && !Mathf.Approximately(direction, _moveDirection)
-                && (direction > 0 && _moveDirection < 0 || direction < 0);
+                && (direction > 0 && Mathf.Approximately(transform.eulerAngles.y, 180)
+                    || direction < 0 && Mathf.Approximately(transform.eulerAngles.y, 0));
 
             if (shouldFlip)
             {
@@ -97,6 +112,20 @@ namespace Project.Characters
         public void RemoveInvincibility()
         {
             _isInvincible = false;
+        }
+
+        public void StartDrop()
+        {
+            _isDropping = true;
+            _oneWayPlatform = _oneWayPlatformChecker.TouchedCollider;
+            Physics2D.IgnoreCollision(_collider, _oneWayPlatform);
+        }
+
+        public void StopDrop()
+        {
+            _isDropping = false;
+            Physics2D.IgnoreCollision(_collider, _oneWayPlatform, false);
+            _oneWayPlatform = null;
         }
     }
 }

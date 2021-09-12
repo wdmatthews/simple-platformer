@@ -18,5 +18,10 @@ namespace Project.Characters
         {
             _shouldJump = Mathf.Approximately(context.ReadValue<float>(), 1);
         }
+
+        public void Drop(InputAction.CallbackContext context)
+        {
+            _shouldDrop = Mathf.Approximately(context.ReadValue<float>(), 1);
+        }
     }
 }

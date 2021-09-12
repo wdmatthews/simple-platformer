@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Character
   m_EditorClassIdentifier: 
   MoveSpeed: 4
-  JumpSpeed: 12
+  JumpSpeed: 15
   GravityScale: 3
   MaxHealth: 3
+  InvincibleDuration: 1
