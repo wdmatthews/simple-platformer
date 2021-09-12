@@ -10,5 +10,7 @@ namespace Project.Tests.Builders
         public static LiquidBuilder Liquid => new LiquidBuilder();
         public static SawBuilder Saw => new SawBuilder();
         public static ButtonBuilder Button => new ButtonBuilder();
+        public static ToggleBlockBuilder ToggleBlock => new ToggleBlockBuilder();
+        public static ToggleBlockGroupBuilder ToggleBlockGroup => new ToggleBlockGroupBuilder();
     }
 }

@@ -206,11 +206,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1126854540 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5709167632388629976, guid: 875e6a31303e44b40817bb25fb36d3c2, type: 3}
-  m_PrefabInstance: {fileID: 5709167632825501593}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1356420406
 GameObject:
   m_ObjectHideFlags: 0
@@ -431,6 +426,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2076792707 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 443078377892453937, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+  m_PrefabInstance: {fileID: 443078376419674546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39c1e6ef9d334d5880e43cc05b171a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &17290369138695165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -561,6 +567,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ca0c968d11b04de0860d6b667da441b, type: 3}
+--- !u!1001 &443078376419674546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453936, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 443078377892453939, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
+      propertyPath: m_Name
+      value: Toggle Blocks
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 402ef1bb9c4034aeea430ac5459fd659, type: 3}
 --- !u!1001 &2785354611909992826
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -883,23 +946,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8499199382017509920, guid: c8feaea3cc8ef4c4f8a7a3806c82996e, type: 3}
       propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8499199382017509920, guid: c8feaea3cc8ef4c4f8a7a3806c82996e, type: 3}
       propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1126854540}
+      objectReference: {fileID: 2076792707}
     - target: {fileID: 8499199382017509920, guid: c8feaea3cc8ef4c4f8a7a3806c82996e, type: 3}
       propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8499199382017509920, guid: c8feaea3cc8ef4c4f8a7a3806c82996e, type: 3}
       propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: Toggle
       objectReference: {fileID: 0}
     - target: {fileID: 8499199382017509920, guid: c8feaea3cc8ef4c4f8a7a3806c82996e, type: 3}
       propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: Project.Environment.ToggleBlockGroup, Project.Environment
       objectReference: {fileID: 0}
     - target: {fileID: 8499199382017509920, guid: c8feaea3cc8ef4c4f8a7a3806c82996e, type: 3}
       propertyPath: _onPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
