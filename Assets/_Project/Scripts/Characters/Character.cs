@@ -32,7 +32,9 @@ namespace Project.Characters
         {
             if (!_rigidbody) _rigidbody = GetComponent<Rigidbody2D>();
             if (!_groundChecker) _groundChecker = GetComponent<LayerChecker>();
+            if (!_oneWayPlatformChecker) _oneWayPlatformChecker = GetComponent<LayerChecker>();
             if (!_collider) _collider = GetComponent<BoxCollider2D>();
+            if (!_ladderChecker) _ladderChecker = GetComponent<LayerChecker>();
         }
 
         protected void Start()
@@ -127,6 +129,13 @@ namespace Project.Characters
         public void Die()
         {
             _isDead = true;
+        }
+
+        public void Spawn(Transform spawnPoint)
+        {
+            _isDead = false;
+            _health = _data.MaxHealth;
+            transform.position = spawnPoint.position;
         }
 
         public void MakeInvincibile()

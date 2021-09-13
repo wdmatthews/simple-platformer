@@ -114,6 +114,21 @@ namespace Project.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Spawn_FillsHealthAndSetsPosition()
+        {
+            TestCharacter character = A.Character;
+            Transform spawnPoint = new GameObject().transform;
+            spawnPoint.position = new Vector3(1, 0, 0);
+            yield return null;
+            character.TakeDamage(character.Data.MaxHealth / 2);
+            Assert.AreEqual(character.Data.MaxHealth / 2, character.Health);
+            Assert.AreNotEqual(spawnPoint.position, character.transform.position);
+            character.Spawn(spawnPoint);
+            Assert.AreEqual(character.Data.MaxHealth, character.Health);
+            Assert.AreEqual(spawnPoint.position, character.transform.position);
+        }
+
+        [UnityTest]
         public IEnumerator MakeInvincible_ResetsInvincibleTimer()
         {
             TestCharacter character = A.Character;
