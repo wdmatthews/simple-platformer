@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Project.Collectibles
 {
@@ -9,6 +10,7 @@ namespace Project.Collectibles
     {
         [SerializeField] protected string _characterLayerName = "Character";
         [SerializeField] protected CircleCollider2D _collider = null;
+        [SerializeField] protected UnityEvent<Transform> _onCollect = null;
 
         protected int _characterLayer = 0;
         protected bool _wasCollected = false;
@@ -28,6 +30,7 @@ namespace Project.Collectibles
         {
             _wasCollected = true;
             _collider.enabled = false;
+            _onCollect?.Invoke(transform);
         }
     }
 }
