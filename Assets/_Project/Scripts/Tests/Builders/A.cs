@@ -12,5 +12,6 @@ namespace Project.Tests.Builders
         public static ButtonBuilder Button => new ButtonBuilder();
         public static ToggleBlockBuilder ToggleBlock => new ToggleBlockBuilder();
         public static ToggleBlockGroupBuilder ToggleBlockGroup => new ToggleBlockGroupBuilder();
+        public static PortalBuilder Portal => new PortalBuilder();
     }
 }
