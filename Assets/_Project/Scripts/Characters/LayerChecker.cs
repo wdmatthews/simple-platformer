@@ -5,6 +5,8 @@ namespace Project.Characters
     [AddComponentMenu("Project/Characters/Layer Checker")]
     public class LayerChecker : MonoBehaviour
     {
+        private const float _boxCastDistance = 0.1f;
+
         [SerializeField] private Vector2 _size = new Vector2(0.9f, 0.1f);
         [SerializeField] private float _offset = 0.55f;
         [SerializeField] private LayerMask _layers = 0;
@@ -15,8 +17,10 @@ namespace Project.Characters
         {
             get
             {
-                RaycastHit2D hit = Physics2D.BoxCast(transform.position, _size, 0,
-                    Vector2.down, _offset, _layers);
+                RaycastHit2D hit = Physics2D.BoxCast(
+                    transform.position - new Vector3(0, _offset - _boxCastDistance),
+                    _size, 0, Vector2.down, _boxCastDistance, _layers
+                );
                 TouchedCollider = hit.collider;
                 _isTouching = hit;
                 return _isTouching;

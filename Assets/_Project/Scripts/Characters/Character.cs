@@ -7,6 +7,7 @@ namespace Project.Characters
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(LayerChecker))]
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(CharacterAnimator))]
     public class Character : MonoBehaviour
     {
         [SerializeField] protected CharacterSO _data = null;
@@ -15,6 +16,7 @@ namespace Project.Characters
         [SerializeField] protected LayerChecker _oneWayPlatformChecker = null;
         [SerializeField] protected BoxCollider2D _collider = null;
         [SerializeField] protected LayerChecker _ladderChecker = null;
+        [SerializeField] protected CharacterAnimator _animator = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -60,7 +62,7 @@ namespace Project.Characters
             );
 
             bool isTouchingLadder = _ladderChecker.IsTouching;
-
+            
             if (_isClimbing)
             {
                 if (isTouchingLadder)
@@ -71,6 +73,11 @@ namespace Project.Characters
                     );
                 }
                 else StopClimb();
+
+                _animator.SetIsStill(
+                    Mathf.Approximately(_rigidbody.velocity.x, 0)
+                    && Mathf.Approximately(_rigidbody.velocity.y, 0)
+                );
             }
             else
             {
@@ -84,6 +91,8 @@ namespace Project.Characters
                 else if (_isDropping && !isTouchingOneWayPlatform) StopDrop();
                 if (!Mathf.Approximately(_climbDirection, 0)
                     && !_isClimbing && isTouchingLadder) StartClimb();
+
+                _animator.SetIsGrounded(isGrounded && Mathf.Approximately(_rigidbody.velocity.y, 0));
             }
         }
 
@@ -102,6 +111,7 @@ namespace Project.Characters
             }
 
             _moveDirection = direction;
+            _animator.SetIsMoving(!Mathf.Approximately(_moveDirection, 0));
         }
 
         public void Jump()
@@ -154,6 +164,7 @@ namespace Project.Characters
             _isDropping = true;
             _oneWayPlatform = _oneWayPlatformChecker.TouchedCollider;
             Physics2D.IgnoreCollision(_collider, _oneWayPlatform);
+            _animator.SetIsDropping(true);
         }
 
         protected void StopDrop()
@@ -161,6 +172,7 @@ namespace Project.Characters
             _isDropping = false;
             Physics2D.IgnoreCollision(_collider, _oneWayPlatform, false);
             _oneWayPlatform = null;
+            _animator.SetIsDropping(false);
         }
 
         protected void StartClimb()
@@ -168,12 +180,14 @@ namespace Project.Characters
             _isClimbing = true;
             _rigidbody.gravityScale = 0;
             if (_isDropping) StopDrop();
+            _animator.SetIsClimbing(true);
         }
 
         protected void StopClimb()
         {
             _isClimbing = false;
             _rigidbody.gravityScale = _data.GravityScale;
+            _animator.SetIsClimbing(false);
         }
     }
 }
