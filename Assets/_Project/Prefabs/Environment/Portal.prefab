@@ -46,8 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterLayerName: Character
-  _teleportPositionTolerance: 0.2
-  _collider: {fileID: 4008244042916150283}
+  _teleportPositionTolerance: 0.3
   _linkedPortal: {fileID: 0}
 --- !u!212 &4008244042916150285
 SpriteRenderer:

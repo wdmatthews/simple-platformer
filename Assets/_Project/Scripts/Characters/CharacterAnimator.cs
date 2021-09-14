@@ -16,7 +16,7 @@ namespace Project.Characters
 
         [SerializeField] private Animator _animator = null;
 
-        private void Awake()
+        private void Start()
         {
             SetIsMoving(false);
             SetIsGrounded(true);

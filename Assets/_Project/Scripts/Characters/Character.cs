@@ -37,6 +37,7 @@ namespace Project.Characters
             if (!_oneWayPlatformChecker) _oneWayPlatformChecker = GetComponent<LayerChecker>();
             if (!_collider) _collider = GetComponent<BoxCollider2D>();
             if (!_ladderChecker) _ladderChecker = GetComponent<LayerChecker>();
+            if (!_animator) _animator = GetComponent<CharacterAnimator>();
         }
 
         protected void Start()
