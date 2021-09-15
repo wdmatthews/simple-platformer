@@ -84,16 +84,16 @@ namespace Project.Characters
             {
                 bool isGrounded = _groundChecker.IsTouching;
                 bool isTouchingOneWayPlatform = _oneWayPlatformChecker.IsTouching;
+                bool yVelocityIsZero = Mathf.Abs(_rigidbody.velocity.y) < 0.0001f;
 
-                if (_shouldJump && isGrounded
-                    && Mathf.Approximately(_rigidbody.velocity.y, 0)) Jump();
+                if (_shouldJump && isGrounded && yVelocityIsZero) Jump();
                 if (_shouldDrop && isGrounded
                     && !_isDropping && isTouchingOneWayPlatform) StartDrop();
                 else if (_isDropping && !isTouchingOneWayPlatform) StopDrop();
                 if (!Mathf.Approximately(_climbDirection, 0)
                     && !_isClimbing && isTouchingLadder) StartClimb();
 
-                _animator.SetIsGrounded(isGrounded && Mathf.Approximately(_rigidbody.velocity.y, 0));
+                _animator.SetIsGrounded(isGrounded && yVelocityIsZero);
             }
         }
 

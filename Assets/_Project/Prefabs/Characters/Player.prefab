@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62627cf220d4e4741b4d9a5f81fc21c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _size: {x: 0.6, y: 0.1}
-  _offset: 0.05
+  _size: {x: 0.6, y: 0.15}
+  _offset: 0.075
   _layers:
     serializedVersion: 2
     m_Bits: 3584
@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _size: {x: 0.6, y: 1.1}
-  _offset: -0.45
+  _offset: -0.4
   _layers:
     serializedVersion: 2
     m_Bits: 1024
