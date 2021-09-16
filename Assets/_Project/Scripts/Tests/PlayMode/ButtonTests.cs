@@ -7,18 +7,20 @@ namespace Project.Tests.PlayMode
     public class ButtonTests
     {
         [Test]
-        public void Press_DisablesCollider()
+        public void Press_DisablesColliderIf_NotResetOnTriggerExit()
         {
             TestButton button = A.Button;
+            button.ResetOnTriggerExit = false;
             button.Press();
             Assert.AreEqual(true, button.WasPressed);
             Assert.AreEqual(false, button.Collider.enabled);
         }
 
         [Test]
-        public void Reset_EnablesCollider()
+        public void Reset_EnablesColliderIf_NotResetOnTriggerExit()
         {
             TestButton button = A.Button;
+            button.ResetOnTriggerExit = false;
             button.Press();
             button.Reset();
             Assert.AreEqual(false, button.WasPressed);
