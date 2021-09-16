@@ -1,7 +1,9 @@
 {
     "name": "Project.Collectibles",
     "rootNamespace": "Project.Collectibles",
-    "references": [],
+    "references": [
+        "GUID:8b461958face34c8abe0f5b270281691"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

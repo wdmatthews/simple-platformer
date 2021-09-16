@@ -321,7 +321,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 150285487}
     - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
+      propertyPath: _onCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 150285487}
+    - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
       propertyPath: _onCollect.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
+      propertyPath: _onCollected.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Unlock
       objectReference: {fileID: 0}
     - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
@@ -329,7 +337,15 @@ PrefabInstance:
       value: Project.Environment.Door, Project.Environment
       objectReference: {fileID: 0}
     - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
+      propertyPath: _onCollected.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Project.Environment.Door, Project.Environment
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
       propertyPath: _onCollect.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2797120533169171938, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
+      propertyPath: _onCollected.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2797120533169171950, guid: 2b86309123e694d6692d25f7d66afeac, type: 3}
@@ -4883,10 +4899,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1556370359}
+  - component: {fileID: 1556370362}
   - component: {fileID: 1556370361}
   - component: {fileID: 1556370360}
   m_Layer: 5
-  m_Name: Key
+  m_Name: Key Tracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4949,6 +4966,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556370358}
   m_CullTransparentMesh: 1
+--- !u!114 &1556370362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556370358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d4b80d74c5a4f4a813400b523bc5a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _image: {fileID: 1556370360}
+  _onKeyCollectedChannel: {fileID: 11400000, guid: e0d81a3110c724c7e959d805089f098f, type: 2}
 --- !u!1001 &1702337374
 PrefabInstance:
   m_ObjectHideFlags: 0

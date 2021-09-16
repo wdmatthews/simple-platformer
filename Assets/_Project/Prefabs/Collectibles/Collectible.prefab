@@ -49,9 +49,11 @@ MonoBehaviour:
   _characterLayerName: Character
   _collider: {fileID: 3688667306378783021}
   _animator: {fileID: 4712515803178170819}
-  _onCollect:
+  _spriteRenderer: {fileID: 3688667306378783023}
+  _onCollected:
     m_PersistentCalls:
       m_Calls: []
+  _onCollectedChannel: {fileID: 0}
 --- !u!58 &3688667306378783021
 CircleCollider2D:
   m_ObjectHideFlags: 0
