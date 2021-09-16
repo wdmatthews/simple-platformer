@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.Events;
 
 namespace Project.Characters
 {
@@ -17,6 +18,7 @@ namespace Project.Characters
         [SerializeField] protected BoxCollider2D _collider = null;
         [SerializeField] protected LayerChecker _ladderChecker = null;
         [SerializeField] protected CharacterAnimator _animator = null;
+        [SerializeField] protected FloatEventChannelSO _onCharacterHealthChangedChannel = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -44,6 +46,7 @@ namespace Project.Characters
         {
             _rigidbody.gravityScale = _data.GravityScale;
             _health = _data.MaxHealth;
+            if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
         }
 
         protected void Update()
@@ -132,6 +135,7 @@ namespace Project.Characters
         {
             if (_isInvincible) return;
             _health = Mathf.Clamp(_health - amount, 0, _data.MaxHealth);
+            if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
 
             if (Mathf.Approximately(_health, 0)) Die();
             else MakeInvincibile();
@@ -147,17 +151,20 @@ namespace Project.Characters
             _isDead = false;
             _health = _data.MaxHealth;
             transform.position = spawnPoint.position;
+            if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
         }
 
         public void MakeInvincibile()
         {
             _isInvincible = true;
             _invincibleTimer = _data.InvincibleDuration;
+            _animator.SetIsInvincible(_isInvincible);
         }
 
         public void RemoveInvincibility()
         {
             _isInvincible = false;
+            _animator.SetIsInvincible(_isInvincible);
         }
 
         protected void StartDrop()

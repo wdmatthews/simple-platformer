@@ -6,8 +6,8 @@ namespace Project.Events
     [CreateAssetMenu(fileName = "New Event", menuName = "Project/Events/Event")]
     public class EventChannelSO : ScriptableObject
     {
-        public Action OnRaise = null;
+        public Action OnRaised = null;
 
-        public void Raise() => OnRaise?.Invoke();
+        public void Raise() => OnRaised?.Invoke();
     }
 }

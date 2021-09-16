@@ -59,6 +59,7 @@ MonoBehaviour:
   _collider: {fileID: 17290368700161093}
   _ladderChecker: {fileID: 5471182422430838411}
   _animator: {fileID: 3891888107024115018}
+  _onCharacterHealthChangedChannel: {fileID: 11400000, guid: b0791335c6c04494087f9573cc5cd87d, type: 2}
 --- !u!114 &17290368700161095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +316,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c79412166c154527938492cde232d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _invicibleAlpha: 0.75
   _animator: {fileID: 2899763276551358718}
+  _renderer: {fileID: 17290368700161096}
 --- !u!95 &2899763276551358718
 Animator:
   serializedVersion: 3

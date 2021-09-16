@@ -9,7 +9,8 @@
         "Project.Characters",
         "Project.Collectibles",
         "Project.Environment",
-        "Project.Tests"
+        "Project.Tests",
+        "Project.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

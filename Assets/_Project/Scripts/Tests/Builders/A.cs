@@ -13,5 +13,7 @@ namespace Project.Tests.Builders
         public static ToggleBlockBuilder ToggleBlock => new ToggleBlockBuilder();
         public static ToggleBlockGroupBuilder ToggleBlockGroup => new ToggleBlockGroupBuilder();
         public static PortalBuilder Portal => new PortalBuilder();
+        public static HealthTrackerBuilder HealthTracker => new HealthTrackerBuilder();
+        public static HealthTrackerHeartBuilder HealthTrackerHeart => new HealthTrackerHeartBuilder();
     }
 }
