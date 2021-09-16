@@ -4,18 +4,18 @@ using Project.Events;
 
 namespace Project.UI
 {
-    [AddComponentMenu("Project/UI/Key Tracker")]
+    [AddComponentMenu("Project/UI/Collectible Tracker")]
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Image))]
-    public class KeyTracker : MonoBehaviour
+    public class CollectibleTracker : MonoBehaviour
     {
         [SerializeField] protected Image _image = null;
-        [SerializeField] protected SpriteRendererEventChannelSO _onKeyCollectedChannel = null;
+        [SerializeField] protected SpriteRendererEventChannelSO _onCollectedChannel = null;
 
         protected void Awake()
         {
             if (!_image) _image = GetComponent<Image>();
-            if (_onKeyCollectedChannel) _onKeyCollectedChannel.OnRaised += SetSprite;
+            if (_onCollectedChannel) _onCollectedChannel.OnRaised += SetSprite;
         }
 
         public void SetSprite(SpriteRenderer renderer)

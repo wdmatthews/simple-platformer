@@ -3,7 +3,7 @@ using Project.UI;
 
 namespace Project.Tests.UI
 {
-    public class TestKeyTracker : KeyTracker
+    public class TestCollectibleTracker : CollectibleTracker
     {
         public Image Image => _image;
     }

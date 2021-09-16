@@ -15,6 +15,6 @@ namespace Project.Tests.Builders
         public static PortalBuilder Portal => new PortalBuilder();
         public static HealthTrackerBuilder HealthTracker => new HealthTrackerBuilder();
         public static HealthTrackerHeartBuilder HealthTrackerHeart => new HealthTrackerHeartBuilder();
-        public static KeyTrackerBuilder KeyTracker => new KeyTrackerBuilder();
+        public static CollectibleTrackerBuilder CollectibleTracker => new CollectibleTrackerBuilder();
     }
 }

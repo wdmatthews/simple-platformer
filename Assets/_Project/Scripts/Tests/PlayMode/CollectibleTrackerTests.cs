@@ -5,12 +5,12 @@ using Project.Tests.UI;
 
 namespace Project.Tests.PlayMode
 {
-    public class KeyTrackerTests
+    public class CollectibleTrackerTests
     {
         [Test]
         public void SetSprite_SetsSpriteFromSpriteRenderer()
         {
-            TestKeyTracker tracker = A.KeyTracker;
+            TestCollectibleTracker tracker = A.CollectibleTracker;
             SpriteRenderer renderer = new GameObject().AddComponent<SpriteRenderer>();
             renderer.sprite = Sprite.Create(new Texture2D(1, 1), new Rect(0, 0, 1, 1), new Vector2(0.5f, 0.5f));
             tracker.SetSprite(renderer);
