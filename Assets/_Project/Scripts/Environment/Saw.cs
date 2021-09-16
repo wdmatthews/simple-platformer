@@ -7,6 +7,7 @@ namespace Project.Environment
     [RequireComponent(typeof(CircleCollider2D))]
     public class Saw : Hazard
     {
+        [SerializeField] protected float _spinSpeed = 1f;
         [SerializeField] protected Vector2[] _waypoints = { };
 
         protected int _currentWaypointIndex = 0;
@@ -40,6 +41,9 @@ namespace Project.Environment
             {
                 Vector2 newPosition = Vector2.MoveTowards(transform.position,
                                 _currentWaypoint, Time.deltaTime * _data.MoveSpeed);
+                Vector2 positionDifference = newPosition - (Vector2)transform.position;
+                float spinDirection = positionDifference.x < -Mathf.Epsilon
+                    || positionDifference.y < -Mathf.Epsilon ? 1 : -1;
                 transform.position = newPosition;
 
                 if (Mathf.Approximately(newPosition.x, _currentWaypoint.x)
@@ -50,6 +54,8 @@ namespace Project.Environment
                     _currentWaypoint = _waypoints[_currentWaypointIndex];
                     Pause();
                 }
+
+                transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * _spinSpeed * spinDirection);
             }
         }
 
@@ -68,10 +74,14 @@ namespace Project.Environment
         protected void OnDrawGizmosSelected()
         {
             Gizmos.color = Color.yellow;
+            int waypointCount = _waypoints.Length;
 
-            foreach (Vector2 waypoint in _waypoints)
+            for (int i = 0; i < waypointCount; i++)
             {
+                Vector2 waypoint = _waypoints[i];
+                int nextIndex = i < waypointCount - 1 ? i + 1 : 0;
                 Gizmos.DrawWireSphere(waypoint, 0.1f);
+                Gizmos.DrawRay(waypoint, _waypoints[nextIndex] - waypoint);
             }
         }
 #endif

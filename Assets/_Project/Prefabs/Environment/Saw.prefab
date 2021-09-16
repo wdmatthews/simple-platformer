@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data: {fileID: 11400000, guid: 86206e0f2a08b4add892bddde3e0565a, type: 2}
   _characterLayerName: Character
+  _spinSpeed: 270
   _waypoints: []
 --- !u!212 &5709167632388629978
 SpriteRenderer:
@@ -89,7 +90,7 @@ SpriteRenderer:
   m_SortingLayerID: -1152191203
   m_SortingLayer: -1
   m_SortingOrder: -1
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c5b3ae5f1d264281aba2a541af82732, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

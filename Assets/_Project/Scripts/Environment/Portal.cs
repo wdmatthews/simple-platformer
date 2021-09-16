@@ -9,6 +9,8 @@ namespace Project.Environment
     {
         [SerializeField] protected string _characterLayerName = "Character";
         [SerializeField] protected float _teleportPositionTolerance = 0.05f;
+        [SerializeField] protected float _spinSpeed = 1f;
+        [SerializeField] protected int _spinDirection = 1;
         [SerializeField] protected Transform _linkedPortal = null;
 
         protected int _characterLayer = 0;
@@ -16,6 +18,11 @@ namespace Project.Environment
         protected void Awake()
         {
             _characterLayer = LayerMask.NameToLayer(_characterLayerName);
+        }
+
+        protected void Update()
+        {
+            transform.eulerAngles += new Vector3(0, 0, Time.deltaTime * _spinSpeed * _spinDirection);
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
