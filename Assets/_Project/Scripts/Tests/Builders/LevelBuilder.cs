@@ -9,6 +9,7 @@ namespace Project.Tests.Builders
     {
         private Transform _entrance = null;
         private TestCollectible _diamond = null;
+        private TestCollectible _key = null;
         private TestPlayer _playerPrefab = null;
 
         public LevelBuilder WithEntrance(Transform entrance)
@@ -20,6 +21,12 @@ namespace Project.Tests.Builders
         public LevelBuilder WithDiamond(TestCollectible diamond)
         {
             _diamond = diamond;
+            return this;
+        }
+
+        public LevelBuilder WithKey(TestCollectible key)
+        {
+            _key = key;
             return this;
         }
 
@@ -35,6 +42,7 @@ namespace Project.Tests.Builders
             TestLevel level = gameObject.AddComponent<TestLevel>();
             level.Entrance = _entrance ? _entrance : new GameObject().transform;
             level.Diamond = _diamond ? _diamond : A.Collectible;
+            level.Key = _key ? _key : A.Collectible;
             level.PlayerPrefab = _playerPrefab ? _playerPrefab : A.Player;
             return level;
         }

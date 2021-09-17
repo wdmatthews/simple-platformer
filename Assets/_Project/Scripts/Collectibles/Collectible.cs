@@ -16,10 +16,12 @@ namespace Project.Collectibles
         [SerializeField] protected CollectibleAnimator _animator = null;
         [SerializeField] protected SpriteRenderer _spriteRenderer = null;
         [SerializeField] protected SpriteRendererEventChannelSO _onCollectedChannel = null;
+        [SerializeField] protected TransformEventChannelSO _onCheckpointCollectedChannel = null;
         [SerializeField] protected UnityEvent<Transform> _onCollected = null;
 
         protected int _characterLayer = 0;
         protected bool _wasCollected = false;
+        protected bool _collectionWasSaved = false;
 
         protected void Awake()
         {
@@ -39,6 +41,21 @@ namespace Project.Collectibles
             _wasCollected = true;
             _collider.enabled = false;
             _onCollected?.Invoke(transform);
+            if (_onCollectedChannel) _onCollectedChannel.Raise(_spriteRenderer);
+            if (_onCheckpointCollectedChannel) _onCheckpointCollectedChannel.Raise(transform);
+            _animator.SetWasCollected(_wasCollected);
+        }
+
+        public void SaveProgress()
+        {
+            if (_wasCollected) _collectionWasSaved = true;
+        }
+
+        public void ResetProgress()
+        {
+            if (!_collectionWasSaved) return;
+            _wasCollected = false;
+            _collider.enabled = true;
             if (_onCollectedChannel) _onCollectedChannel.Raise(_spriteRenderer);
             _animator.SetWasCollected(_wasCollected);
         }

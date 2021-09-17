@@ -8,5 +8,6 @@ namespace Project.Tests.Collectibles
         public CircleCollider2D Collider => _collider;
 
         public bool WasCollected => _wasCollected;
+        public bool CollectionWasSaved => _collectionWasSaved;
     }
 }

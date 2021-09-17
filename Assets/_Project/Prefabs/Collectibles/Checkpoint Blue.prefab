@@ -12,6 +12,10 @@ PrefabInstance:
       value: Checkpoint Blue
       objectReference: {fileID: 0}
     - target: {fileID: 3688667306378783020, guid: fc755a82b862c453aa3b9ca050b4998c, type: 3}
+      propertyPath: _onCheckpointCollectedChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: fa8ef4ea30f9a44b481a9adc5d5f9aea, type: 2}
+    - target: {fileID: 3688667306378783020, guid: fc755a82b862c453aa3b9ca050b4998c, type: 3}
       propertyPath: _onCollect.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}

@@ -14,10 +14,12 @@ namespace Project.Collectibles
         [SerializeField] private Sprite _collectedSprite = null;
 
         private bool _wasCollected = false;
+        protected Sprite _initialSprite = null;
 
         private void Awake()
         {
             if (!_renderer) _renderer = GetComponent<SpriteRenderer>();
+            _initialSprite = _renderer.sprite;
         }
 
         private void Update()
@@ -38,6 +40,7 @@ namespace Project.Collectibles
                 _renderer.sprite = _collectedSprite;
                 transform.localScale = Vector3.one;
             }
+            else _renderer.sprite = _initialSprite;
         }
     }
 }
