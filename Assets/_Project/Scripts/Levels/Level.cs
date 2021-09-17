@@ -14,6 +14,8 @@ namespace Project.Levels
         [SerializeField] protected Transform _entrance = null;
         [SerializeField] protected Collectible _diamond = null;
         [SerializeField] protected Collectible _key = null;
+        [SerializeField] protected ToggleBlock[] _toggleBlocks = { };
+        [SerializeField] protected Button[] _buttons = { };
         [SerializeField] protected Player _playerPrefab = null;
         [SerializeField] protected TransformEventChannelSO _onCheckpointCollectedChannel = null;
 
@@ -46,8 +48,18 @@ namespace Project.Levels
         public void SaveProgress(Transform checkpoint)
         {
             _lastCheckpoint = checkpoint;
-            _diamond.SaveProgress();
-            _key.SaveProgress();
+            _diamond.SaveState();
+            _key.SaveState();
+
+            for (int i = _toggleBlocks.Length - 1; i >= 0; i--)
+            {
+                _toggleBlocks[i].SaveState();
+            }
+
+            for (int i = _buttons.Length - 1; i >= 0; i--)
+            {
+                _buttons[i].SaveState();
+            }
         }
     }
 }

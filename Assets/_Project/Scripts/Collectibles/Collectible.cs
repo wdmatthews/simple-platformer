@@ -46,12 +46,12 @@ namespace Project.Collectibles
             _animator.SetWasCollected(_wasCollected);
         }
 
-        public void SaveProgress()
+        public void SaveState()
         {
             if (_wasCollected) _collectionWasSaved = true;
         }
 
-        public void ResetProgress()
+        public void ResetState()
         {
             if (!_collectionWasSaved) return;
             _wasCollected = false;

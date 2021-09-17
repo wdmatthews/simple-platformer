@@ -16,23 +16,23 @@ namespace Project.Tests.PlayMode
         }
 
         [Test]
-        public void SaveProgress_SetsCollectionWasSaved()
+        public void SaveState_SetsCollectionWasSaved()
         {
             TestCollectible collectible = A.Collectible;
-            collectible.SaveProgress();
+            collectible.SaveState();
             Assert.AreEqual(false, collectible.CollectionWasSaved);
             collectible.Collect();
-            collectible.SaveProgress();
+            collectible.SaveState();
             Assert.AreEqual(true, collectible.CollectionWasSaved);
         }
 
         [Test]
-        public void ResetProgress_EnablesCollider()
+        public void ResetState_EnablesCollider()
         {
             TestCollectible collectible = A.Collectible;
             collectible.Collect();
-            collectible.SaveProgress();
-            collectible.ResetProgress();
+            collectible.SaveState();
+            collectible.ResetState();
             Assert.AreEqual(false, collectible.WasCollected);
             Assert.AreEqual(true, collectible.Collider.enabled);
         }

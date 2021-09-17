@@ -14,6 +14,7 @@ namespace Project.Environment
         [SerializeField] protected SpriteRenderer _renderer = null;
 
         protected bool _isOn = true;
+        protected bool _wasOnWhenSaved = true;
 
         protected void Awake()
         {
@@ -24,6 +25,18 @@ namespace Project.Environment
         public void Toggle()
         {
             _isOn = !_isOn;
+            _collider.enabled = _isOn;
+            _renderer.sprite = _isOn ? _onSprite : _offSprite;
+        }
+
+        public void SaveState()
+        {
+            _wasOnWhenSaved = _isOn;
+        }
+
+        public void ResetState()
+        {
+            _isOn = _wasOnWhenSaved;
             _collider.enabled = _isOn;
             _renderer.sprite = _isOn ? _onSprite : _offSprite;
         }

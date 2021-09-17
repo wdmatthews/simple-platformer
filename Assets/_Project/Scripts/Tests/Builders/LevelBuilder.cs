@@ -1,6 +1,7 @@
 using UnityEngine;
 using Project.Tests.Characters;
 using Project.Tests.Collectibles;
+using Project.Tests.Environment;
 using Project.Tests.Levels;
 
 namespace Project.Tests.Builders
@@ -10,6 +11,8 @@ namespace Project.Tests.Builders
         private Transform _entrance = null;
         private TestCollectible _diamond = null;
         private TestCollectible _key = null;
+        private TestToggleBlock[] _toggleBlocks = null;
+        private TestButton[] _buttons = null;
         private TestPlayer _playerPrefab = null;
 
         public LevelBuilder WithEntrance(Transform entrance)
@@ -36,6 +39,18 @@ namespace Project.Tests.Builders
             return this;
         }
 
+        public LevelBuilder WithToggleBlocks(TestToggleBlock[] toggleBlocks)
+        {
+            _toggleBlocks = toggleBlocks;
+            return this;
+        }
+
+        public LevelBuilder WithButtons(TestButton[] buttons)
+        {
+            _buttons = buttons;
+            return this;
+        }
+
         public TestLevel Build()
         {
             GameObject gameObject = new GameObject();
@@ -43,6 +58,8 @@ namespace Project.Tests.Builders
             level.Entrance = _entrance ? _entrance : new GameObject().transform;
             level.Diamond = _diamond ? _diamond : A.Collectible;
             level.Key = _key ? _key : A.Collectible;
+            if (_toggleBlocks != null) level.SetToggleBlocks(_toggleBlocks);
+            if (_buttons != null) level.SetButtons(_buttons);
             level.PlayerPrefab = _playerPrefab ? _playerPrefab : A.Player;
             return level;
         }

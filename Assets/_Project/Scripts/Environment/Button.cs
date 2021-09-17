@@ -19,6 +19,7 @@ namespace Project.Environment
 
         protected int _characterLayer = 0;
         protected bool _wasPressed = false;
+        protected bool _wasPressedWhenSaved = false;
 
         protected void Awake()
         {
@@ -54,6 +55,20 @@ namespace Project.Environment
             _wasPressed = false;
             if (!_resetOnTriggerExit) _collider.enabled = true;
             _renderer.sprite = _normalSprite;
+        }
+
+        public void SaveState()
+        {
+            if (_resetOnTriggerExit) return;
+            _wasPressedWhenSaved = _wasPressed;
+        }
+
+        public void ResetState()
+        {
+            if (_resetOnTriggerExit) return;
+            _wasPressed = _wasPressedWhenSaved;
+            _collider.enabled = !_wasPressedWhenSaved;
+            _renderer.sprite = _wasPressedWhenSaved ? _pressedSprite : _normalSprite;
         }
     }
 }

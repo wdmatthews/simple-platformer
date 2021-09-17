@@ -9,5 +9,6 @@ namespace Project.Tests.Environment
         public BoxCollider2D Collider => _collider;
 
         public bool WasPressed => _wasPressed;
+        public bool WasPressedWhenSaved => _wasPressedWhenSaved;
     }
 }

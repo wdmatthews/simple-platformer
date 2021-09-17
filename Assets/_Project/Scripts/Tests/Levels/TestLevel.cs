@@ -1,7 +1,9 @@
 using UnityEngine;
+using Project.Environment;
+using Project.Levels;
 using Project.Tests.Characters;
 using Project.Tests.Collectibles;
-using Project.Levels;
+using Project.Tests.Environment;
 using Project.Saving;
 
 namespace Project.Tests.Levels
@@ -17,5 +19,27 @@ namespace Project.Tests.Levels
         public SaveDataLevel SaveData => _saveData;
         public TestPlayer Player => (TestPlayer)_player;
         public Transform LastCheckpoint => _lastCheckpoint;
+
+        public void SetToggleBlocks(TestToggleBlock[] toggleBlocks)
+        {
+            int toggleBlockCount = toggleBlocks.Length;
+            _toggleBlocks = new ToggleBlock[toggleBlockCount];
+
+            for (int i = 0; i < toggleBlockCount; i++)
+            {
+                _toggleBlocks[i] = toggleBlocks[i];
+            }
+        }
+
+        public void SetButtons(TestButton[] buttons)
+        {
+            int buttonCount = buttons.Length;
+            _buttons = new Button[buttonCount];
+
+            for (int i = 0; i < buttonCount; i++)
+            {
+                _buttons[i] = buttons[i];
+            }
+        }
     }
 }
