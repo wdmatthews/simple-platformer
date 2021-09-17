@@ -17,6 +17,7 @@ namespace Project.Tests.EditMode
             };
             saveManager.Save();
             Assert.IsNotEmpty(PlayerPrefs.GetString(SaveManagerSO.SaveDataName));
+            PlayerPrefs.DeleteKey(SaveManagerSO.SaveDataName);
         }
 
         [Test]
@@ -31,6 +32,7 @@ namespace Project.Tests.EditMode
             SaveDataLevel savedLevel = saveManager.SaveData.Levels[0];
             Assert.AreEqual(true, savedLevel.WasCompleted);
             Assert.AreEqual(false, savedLevel.DiamondWasCollected);
+            PlayerPrefs.DeleteKey(SaveManagerSO.SaveDataName);
         }
     }
 }

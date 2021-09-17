@@ -9,6 +9,8 @@
         "Project.Characters",
         "Project.Collectibles",
         "Project.Environment",
+        "Project.Levels",
+        "Project.Saving",
         "Project.Tests",
         "Project.UI"
     ],

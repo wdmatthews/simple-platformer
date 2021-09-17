@@ -29,11 +29,6 @@ namespace Project.Collectibles
             _characterLayer = LayerMask.NameToLayer(_characterLayerName);
         }
 
-        protected void Start()
-        {
-            _animator.SetWasCollected(false);
-        }
-
         protected void OnTriggerEnter2D(Collider2D collision)
         {
             if (!_wasCollected && collision.gameObject.layer == _characterLayer) Collect();

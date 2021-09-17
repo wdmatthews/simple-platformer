@@ -1,13 +1,11 @@
 {
-    "name": "Project.Tests",
-    "rootNamespace": "Project.Tests",
+    "name": "Project.Levels",
+    "rootNamespace": "Project.Levels",
     "references": [
         "GUID:e139f6139f1444b26b7d562448cfa973",
         "GUID:a2e36a9ecb923474488e88dccd27cf40",
         "GUID:8daa715c096024a67bda87050c266437",
-        "GUID:adba4c8acab6e49c492ffd509d138720",
-        "GUID:3df7231b9b7e84be58a6dcb8dff57827",
-        "GUID:50d8fb9effc6c4f188a1e9625ef6a511"
+        "GUID:3df7231b9b7e84be58a6dcb8dff57827"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

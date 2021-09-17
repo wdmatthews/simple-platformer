@@ -7,7 +7,8 @@ namespace Project.Tests.Builders
     {
         public SaveManagerSO Build()
         {
-            return ScriptableObject.CreateInstance<SaveManagerSO>();
+            SaveManagerSO manager = ScriptableObject.CreateInstance<SaveManagerSO>();
+            return manager;
         }
 
         public static implicit operator SaveManagerSO(SaveManagerSOBuilder builder) => builder.Build();

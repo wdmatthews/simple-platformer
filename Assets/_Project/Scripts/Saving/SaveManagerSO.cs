@@ -7,7 +7,7 @@ namespace Project.Saving
     {
         public const string SaveDataName = "Save Data";
 
-        public SaveData SaveData = new SaveData();
+        [System.NonSerialized] public SaveData SaveData = new SaveData();
 
         public void Save()
         {
