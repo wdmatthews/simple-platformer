@@ -19,6 +19,11 @@ namespace Project.UI
             if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.OnRaised += Initialize;
         }
 
+        protected void OnDestroy()
+        {
+            if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.OnRaised -= Initialize;
+        }
+
         public void Initialize(float maxHealth)
         {
             _heartCount = Mathf.CeilToInt(maxHealth);

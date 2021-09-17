@@ -16,5 +16,6 @@ namespace Project.Tests.Builders
         public static HealthTrackerBuilder HealthTracker => new HealthTrackerBuilder();
         public static HealthTrackerHeartBuilder HealthTrackerHeart => new HealthTrackerHeartBuilder();
         public static CollectibleTrackerBuilder CollectibleTracker => new CollectibleTrackerBuilder();
+        public static SaveManagerSOBuilder SaveManagerSO => new SaveManagerSOBuilder();
     }
 }

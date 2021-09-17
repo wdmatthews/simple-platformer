@@ -18,6 +18,11 @@ namespace Project.UI
             if (_onCollectedChannel) _onCollectedChannel.OnRaised += SetSprite;
         }
 
+        protected void OnDestroy()
+        {
+            if (_onCollectedChannel) _onCollectedChannel.OnRaised -= SetSprite;
+        }
+
         public void SetSprite(SpriteRenderer renderer)
         {
             _image.sprite = renderer.sprite;
