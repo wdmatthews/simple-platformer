@@ -1,21 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using NUnit.Framework;
+using Project.Saving;
+using Project.Tests.Builders;
+using Project.Tests.Levels;
 
 namespace Project.Tests.PlayMode
 {
-    public class LevelTests : MonoBehaviour
+    public class LevelTests
     {
-        // Start is called before the first frame update
-        void Start()
+        [Test]
+        public void Initialize_SpawnsPlayer()
         {
-        
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            Assert.IsNotNull(level.Player);
         }
 
-        // Update is called once per frame
-        void Update()
+        [Test]
+        public void Initialize_SpawnsDiamondIf_CollectedInSave()
         {
-        
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel(true, false));
+            Assert.AreEqual(false, level.Diamond.WasCollected);
+            level = A.Level;
+            level.Initialize(0, new SaveDataLevel(true, true));
+            Assert.AreEqual(true, level.Diamond.WasCollected);
         }
     }
 }

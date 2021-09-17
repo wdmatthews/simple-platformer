@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Project.Saving;
 using Project.Tests.Builders;
 using Project.Tests.Levels;
 
@@ -8,22 +7,21 @@ namespace Project.Tests.PlayMode
     public class LevelManagerSOTests
     {
         [Test]
-        public void Initialize_SpawnsPlayer()
+        public void Load_SpawnsLevel()
         {
-            TestLevel level = A.Level;
-            level.Initialize(0, new SaveDataLevel());
-            Assert.IsNotNull(level.Player);
+            TestLevelManagerSO levelManager = A.LevelManagerSO
+                .WithLevels(new TestLevel[] { A.Level });
+            levelManager.Load();
+            Assert.IsNotNull(levelManager.LoadedLevel);
         }
 
         [Test]
-        public void Initialize_SpawnsDiamondIf_CollectedInSave()
+        public void Load_FillsEmptySave()
         {
-            TestLevel level = A.Level;
-            level.Initialize(0, new SaveDataLevel(true, false));
-            Assert.AreEqual(false, level.Diamond.WasCollected);
-            level = A.Level;
-            level.Initialize(0, new SaveDataLevel(true, true));
-            Assert.AreEqual(true, level.Diamond.WasCollected);
+            TestLevelManagerSO levelManager = A.LevelManagerSO
+                .WithLevels(new TestLevel[] { A.Level });
+            levelManager.Load();
+            Assert.AreEqual(levelManager.Levels.Length, levelManager.SaveManager.SaveData.Levels.Length);
         }
     }
 }
