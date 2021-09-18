@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Project.Characters;
 
 namespace Project.Tests.Characters
@@ -7,6 +8,7 @@ namespace Project.Tests.Characters
     {
         public CharacterSO Data { get => _data; set => _data = value; }
         public Rigidbody2D Rigidbody => _rigidbody;
+        public PlayerInput Input => _input;
 
         public float MoveDirection => _moveDirection;
         public bool ShouldJump => _shouldJump;

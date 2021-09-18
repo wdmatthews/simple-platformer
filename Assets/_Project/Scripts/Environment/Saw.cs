@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.Events;
 
 namespace Project.Environment
 {
@@ -8,6 +9,8 @@ namespace Project.Environment
     public class Saw : Hazard
     {
         [SerializeField] protected float _spinSpeed = 1f;
+        [SerializeField] protected EventChannelSO _onPausedChannel = null;
+        [SerializeField] protected EventChannelSO _onResumedChannel = null;
         [SerializeField] protected Vector2[] _waypoints = { };
 
         protected int _currentWaypointIndex = 0;
@@ -26,6 +29,15 @@ namespace Project.Environment
             {
                 _currentWaypoint = _waypoints[_currentWaypointIndex];
             }
+
+            if (_onPausedChannel) _onPausedChannel.OnRaised += OnGamePaused;
+            if (_onResumedChannel) _onResumedChannel.OnRaised += OnGameResumed;
+        }
+
+        protected void OnDestroy()
+        {
+            if (_onPausedChannel) _onPausedChannel.OnRaised -= OnGamePaused;
+            if (_onResumedChannel) _onResumedChannel.OnRaised -= OnGameResumed;
         }
 
         protected override void Update()
@@ -68,6 +80,16 @@ namespace Project.Environment
         public void Resume()
         {
             _isPaused = false;
+        }
+
+        public void OnGamePaused()
+        {
+            enabled = false;
+        }
+
+        public void OnGameResumed()
+        {
+            enabled = true;
         }
 
 #if UNITY_EDITOR

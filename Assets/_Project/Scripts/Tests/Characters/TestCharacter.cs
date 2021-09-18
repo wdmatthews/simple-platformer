@@ -7,6 +7,7 @@ namespace Project.Tests.Characters
     {
         public CharacterSO Data { get => _data; set => _data = value; }
         public Rigidbody2D Rigidbody => _rigidbody;
+        public BoxCollider2D Collider => _collider;
 
         public float MoveDirection => _moveDirection;
         public bool ShouldJump => _shouldJump;

@@ -48,6 +48,8 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: 86206e0f2a08b4add892bddde3e0565a, type: 2}
   _characterLayerName: Character
   _spinSpeed: 270
+  _onPausedChannel: {fileID: 11400000, guid: 637688998026e472089ce397ed9d706e, type: 2}
+  _onResumedChannel: {fileID: 11400000, guid: 0567d7d212ff2457da3d37da5d5bf8a4, type: 2}
   _waypoints: []
 --- !u!212 &5709167632388629978
 SpriteRenderer:

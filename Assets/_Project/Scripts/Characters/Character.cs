@@ -20,6 +20,8 @@ namespace Project.Characters
         [SerializeField] protected CharacterAnimator _animator = null;
         [SerializeField] protected FloatEventChannelSO _onCharacterHealthChangedChannel = null;
         [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
+        [SerializeField] protected EventChannelSO _onPausedChannel = null;
+        [SerializeField] protected EventChannelSO _onResumedChannel = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -32,8 +34,9 @@ namespace Project.Characters
         protected Collider2D _oneWayPlatform = null;
         protected bool _isClimbing = false;
         protected float _climbDirection = 0;
+        protected Vector2 _velocityBeforePause = new Vector2();
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             if (!_rigidbody) _rigidbody = GetComponent<Rigidbody2D>();
             if (!_groundChecker) _groundChecker = GetComponent<LayerChecker>();
@@ -41,6 +44,8 @@ namespace Project.Characters
             if (!_collider) _collider = GetComponent<BoxCollider2D>();
             if (!_ladderChecker) _ladderChecker = GetComponent<LayerChecker>();
             if (!_animator) _animator = GetComponent<CharacterAnimator>();
+            if (_onPausedChannel) _onPausedChannel.OnRaised += Pause;
+            if (_onResumedChannel) _onResumedChannel.OnRaised += Resume;
         }
 
         protected void Start()
@@ -48,6 +53,12 @@ namespace Project.Characters
             _rigidbody.gravityScale = _data.GravityScale;
             _health = _data.MaxHealth;
             if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
+        }
+
+        protected void OnDestroy()
+        {
+            if (_onPausedChannel) _onPausedChannel.OnRaised -= Pause;
+            if (_onResumedChannel) _onResumedChannel.OnRaised -= Resume;
         }
 
         protected void Update()
@@ -199,6 +210,25 @@ namespace Project.Characters
             _isClimbing = false;
             _rigidbody.gravityScale = _data.GravityScale;
             _animator.SetIsClimbing(false);
+        }
+
+        public virtual void Pause()
+        {
+            _velocityBeforePause = _rigidbody.velocity;
+            _rigidbody.velocity = new Vector2();
+            _rigidbody.gravityScale = 0;
+            _collider.enabled = false;
+            enabled = false;
+            _animator.Pause();
+        }
+
+        public virtual void Resume()
+        {
+            _rigidbody.velocity = _velocityBeforePause;
+            _rigidbody.gravityScale = _data.GravityScale;
+            _collider.enabled = true;
+            enabled = true;
+            _animator.Resume();
         }
     }
 }

@@ -52,5 +52,15 @@ namespace Project.Characters
             _animator.ResetTrigger(_victoryParameter);
             _animator.SetTrigger(_victoryParameter);
         }
+
+        public void Pause()
+        {
+            _animator.enabled = false;
+        }
+
+        public void Resume()
+        {
+            _animator.enabled = true;
+        }
     }
 }

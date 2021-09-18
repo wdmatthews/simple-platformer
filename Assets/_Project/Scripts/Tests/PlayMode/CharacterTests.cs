@@ -159,5 +159,59 @@ namespace Project.Tests.PlayMode
             character.RemoveInvincibility();
             Assert.AreEqual(false, character.IsInvincible);
         }
+
+        [Test]
+        public void Pause_DisablesCharacter()
+        {
+            TestCharacter character = A.Character;
+            character.Pause();
+            Assert.AreEqual(false, character.enabled);
+        }
+
+        [Test]
+        public void Pause_StopsRigidbody()
+        {
+            TestCharacter character = A.Character;
+            character.Pause();
+            Assert.AreEqual(new Vector2(), character.Rigidbody.velocity);
+            Assert.AreEqual(0, character.Rigidbody.gravityScale);
+        }
+
+        [Test]
+        public void Pause_DisablesCollider()
+        {
+            TestCharacter character = A.Character;
+            character.Pause();
+            Assert.AreEqual(false, character.Collider.enabled);
+        }
+
+        [Test]
+        public void Resume_EnablesCharacter()
+        {
+            TestCharacter character = A.Character;
+            character.Pause();
+            character.Resume();
+            Assert.AreEqual(true, character.enabled);
+        }
+
+        [Test]
+        public void Resume_ContinuesRigidbody()
+        {
+            TestCharacter character = A.Character;
+            character.Rigidbody.velocity = new Vector2(1, 0);
+            character.Pause();
+            character.Resume();
+            Assert.AreEqual(new Vector2(1, 0), character.Rigidbody.velocity);
+            Assert.AreEqual(character.Data.GravityScale, character.Rigidbody.gravityScale);
+        }
+
+        [Test]
+        public void Resume_EnablesCollider()
+        {
+            TestCharacter character = A.Character;
+            character.Pause();
+            character.Resume();
+            Assert.AreEqual(true, character.Collider.enabled);
+        }
     }
 }

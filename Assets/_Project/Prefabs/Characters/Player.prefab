@@ -61,6 +61,9 @@ MonoBehaviour:
   _animator: {fileID: 3891888107024115018}
   _onCharacterHealthChangedChannel: {fileID: 11400000, guid: b0791335c6c04494087f9573cc5cd87d, type: 2}
   _onCharacterDiedChannel: {fileID: 11400000, guid: 73d4267592a3b412da9c4adf20c80372, type: 2}
+  _onPausedChannel: {fileID: 11400000, guid: 637688998026e472089ce397ed9d706e, type: 2}
+  _onResumedChannel: {fileID: 11400000, guid: 0567d7d212ff2457da3d37da5d5bf8a4, type: 2}
+  _input: {fileID: 17290368700161095}
 --- !u!114 &17290368700161095
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -83,5 +83,22 @@ namespace Project.Tests.PlayMode
             saw.Resume();
             Assert.AreEqual(false, saw.IsPaused);
         }
+
+        [Test]
+        public void OnGamePaused_DisablesSaw()
+        {
+            TestSaw saw = A.Saw;
+            saw.OnGamePaused();
+            Assert.AreEqual(false, saw.enabled);
+        }
+
+        [Test]
+        public void OnGameResumed_EnablesSaw()
+        {
+            TestSaw saw = A.Saw;
+            saw.enabled = false;
+            saw.OnGameResumed();
+            Assert.AreEqual(true, saw.enabled);
+        }
     }
 }
