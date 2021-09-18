@@ -60,6 +60,7 @@ namespace Project.Environment
         public void ResetState(bool ignoreSavedState = false)
         {
             _wasUnlocked = !ignoreSavedState && _wasUnlockedWhenSaved;
+            _wasEntered = false;
             _collider.enabled = _wasUnlocked;
 
             if (_bottomRenderer && _topRenderer)
