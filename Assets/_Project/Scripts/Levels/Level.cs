@@ -14,10 +14,12 @@ namespace Project.Levels
         [SerializeField] protected Transform _entrance = null;
         [SerializeField] protected Collectible _diamond = null;
         [SerializeField] protected Collectible _key = null;
+        [SerializeField] protected Door _door = null;
         [SerializeField] protected ToggleBlock[] _toggleBlocks = { };
         [SerializeField] protected Button[] _buttons = { };
         [SerializeField] protected Player _playerPrefab = null;
         [SerializeField] protected TransformEventChannelSO _onCheckpointCollectedChannel = null;
+        [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
 
         protected int _index = 0;
         protected SaveDataLevel _saveData = null;
@@ -27,11 +29,13 @@ namespace Project.Levels
         protected void Awake()
         {
             if (_onCheckpointCollectedChannel) _onCheckpointCollectedChannel.OnRaised += SaveProgress;
+            if (_onCharacterDiedChannel) _onCharacterDiedChannel.OnRaised += ResetProgress;
         }
 
         protected void OnDestroy()
         {
             if (_onCheckpointCollectedChannel) _onCheckpointCollectedChannel.OnRaised -= SaveProgress;
+            if (_onCharacterDiedChannel) _onCharacterDiedChannel.OnRaised -= ResetProgress;
             if (_player) Destroy(_player.gameObject);
         }
 
@@ -50,6 +54,7 @@ namespace Project.Levels
             _lastCheckpoint = checkpoint;
             _diamond.SaveState();
             _key.SaveState();
+            _door.SaveState();
 
             for (int i = _toggleBlocks.Length - 1; i >= 0; i--)
             {
@@ -59,6 +64,24 @@ namespace Project.Levels
             for (int i = _buttons.Length - 1; i >= 0; i--)
             {
                 _buttons[i].SaveState();
+            }
+        }
+
+        public void ResetProgress()
+        {
+            _player.Spawn(_lastCheckpoint ?? _entrance);
+            _diamond.ResetState();
+            _key.ResetState();
+            _door.ResetState();
+
+            for (int i = _toggleBlocks.Length - 1; i >= 0; i--)
+            {
+                _toggleBlocks[i].ResetState();
+            }
+
+            for (int i = _buttons.Length - 1; i >= 0; i--)
+            {
+                _buttons[i].ResetState();
             }
         }
     }

@@ -8,6 +8,7 @@ namespace Project.Tests.Environment
         public BoxCollider2D Collider => _collider;
 
         public bool WasUnlocked => _wasUnlocked;
+        public bool WasUnlockedWhenSaved => _wasUnlocked;
         public bool WasEntered => _wasEntered;
     }
 }

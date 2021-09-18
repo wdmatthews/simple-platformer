@@ -18,13 +18,18 @@ namespace Project.Environment
 
         protected int _characterLayer = 0;
         protected bool _wasUnlocked = false;
+        protected bool _wasUnlockedWhenSaved = false;
         protected bool _wasEntered = false;
+        protected Sprite _lockedBottomSprite = null;
+        protected Sprite _lockedTopSprite = null;
 
         protected void Awake()
         {
             if (!_collider) _collider = GetComponent<BoxCollider2D>();
             _collider.enabled = false;
             _characterLayer = LayerMask.NameToLayer(_characterLayerName);
+            if (_bottomRenderer) _lockedBottomSprite = _bottomRenderer.sprite;
+            if (_topRenderer) _lockedTopSprite = _topRenderer.sprite;
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
@@ -45,6 +50,23 @@ namespace Project.Environment
             _wasEntered = true;
             _collider.enabled = false;
             _onEnter?.Invoke();
+        }
+
+        public void SaveState()
+        {
+            _wasUnlockedWhenSaved = _wasUnlocked;
+        }
+
+        public void ResetState()
+        {
+            _wasUnlocked = _wasUnlockedWhenSaved;
+            _collider.enabled = _wasUnlocked;
+
+            if (_bottomRenderer && _topRenderer)
+            {
+                _bottomRenderer.sprite = _wasUnlocked ? _unlockedBottomSprite : _lockedBottomSprite;
+                _topRenderer.sprite = _wasUnlocked ? _unlockedTopSprite : _lockedTopSprite;
+            }
         }
     }
 }

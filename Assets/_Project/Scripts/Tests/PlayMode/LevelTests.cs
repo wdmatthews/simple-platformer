@@ -59,6 +59,16 @@ namespace Project.Tests.PlayMode
         }
 
         [Test]
+        public void SaveProgress_SavesDoorState()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.Door.Unlock();
+            level.SaveProgress(null);
+            Assert.AreEqual(true, level.Door.WasUnlockedWhenSaved);
+        }
+
+        [Test]
         public void SaveProgress_SavesToggleStates()
         {
             TestToggleBlock[] toggleBlocks = new TestToggleBlock[] { A.ToggleBlock, A.ToggleBlock };
@@ -82,6 +92,87 @@ namespace Project.Tests.PlayMode
             level.SaveProgress(null);
             Assert.AreEqual(true, buttons[0].WasPressedWhenSaved);
             Assert.AreEqual(false, buttons[1].WasPressedWhenSaved);
+        }
+
+        [Test]
+        public void ResetProgress_SpawnsPlayerAtEntrance()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.SaveProgress(null);
+            level.Player.transform.position = new Vector3(1, 0, 0);
+            level.ResetProgress();
+            Assert.AreEqual(level.Entrance.position, level.Player.transform.position);
+        }
+
+        [Test]
+        public void ResetProgress_SpawnsPlayerAtCheckpoint()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            Transform checkpoint = new GameObject().transform;
+            level.SaveProgress(checkpoint);
+            level.Player.transform.position = new Vector3(1, 0, 0);
+            level.ResetProgress();
+            Assert.AreEqual(level.LastCheckpoint.position, level.Player.transform.position);
+        }
+
+        [Test]
+        public void ResetProgress_ResetsDiamondState()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.SaveProgress(null);
+            level.Diamond.Collect();
+            level.ResetProgress();
+            Assert.AreEqual(false, level.Diamond.WasCollected);
+        }
+
+        [Test]
+        public void ResetProgress_ResetsKeyState()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.SaveProgress(null);
+            level.Key.Collect();
+            level.ResetProgress();
+            Assert.AreEqual(false, level.Key.WasCollected);
+        }
+
+        [Test]
+        public void ResetProgress_ResetsDoorState()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.SaveProgress(null);
+            level.Door.Unlock();
+            level.ResetProgress();
+            Assert.AreEqual(false, level.Door.WasUnlocked);
+        }
+
+        [Test]
+        public void ResetProgress_ResetsToggleStates()
+        {
+            TestToggleBlock[] toggleBlocks = new TestToggleBlock[] { A.ToggleBlock };
+            TestLevel level = A.Level.WithToggleBlocks(toggleBlocks);
+            level.Initialize(0, new SaveDataLevel());
+            level.SaveProgress(null);
+            toggleBlocks[0].Toggle();
+            level.ResetProgress();
+            Assert.AreEqual(true, toggleBlocks[0].IsOn);
+        }
+
+        [Test]
+        public void ResetProgress_ResetsButtonStates()
+        {
+            TestButton[] buttons = new TestButton[] { A.Button };
+            buttons[0].ResetOnTriggerExit = false;
+            TestLevel level = A.Level.WithButtons(buttons);
+            level.Initialize(0, new SaveDataLevel());
+            level.SaveProgress(null);
+            buttons[0].Press();
+            level.ResetProgress();
+            Assert.AreEqual(false, buttons[0].WasPressed);
         }
     }
 }

@@ -136,8 +136,12 @@ MonoBehaviour:
   _entrance: {fileID: 6590712999141896056}
   _diamond: {fileID: 0}
   _key: {fileID: 0}
+  _door: {fileID: 0}
+  _toggleBlocks: []
+  _buttons: []
   _playerPrefab: {fileID: 17290368700161099, guid: e37721a3ce1d740b59319d2908fe6e0e, type: 3}
   _onCheckpointCollectedChannel: {fileID: 11400000, guid: fa8ef4ea30f9a44b481a9adc5d5f9aea, type: 2}
+  _onCharacterDiedChannel: {fileID: 11400000, guid: 73d4267592a3b412da9c4adf20c80372, type: 2}
 --- !u!156049354 &468290911523026003
 Grid:
   m_ObjectHideFlags: 0

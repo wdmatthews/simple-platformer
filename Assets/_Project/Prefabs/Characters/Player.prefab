@@ -60,6 +60,7 @@ MonoBehaviour:
   _ladderChecker: {fileID: 5471182422430838411}
   _animator: {fileID: 3891888107024115018}
   _onCharacterHealthChangedChannel: {fileID: 11400000, guid: b0791335c6c04494087f9573cc5cd87d, type: 2}
+  _onCharacterDiedChannel: {fileID: 11400000, guid: 73d4267592a3b412da9c4adf20c80372, type: 2}
 --- !u!114 &17290368700161095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.010416667}
     oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

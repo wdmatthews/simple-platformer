@@ -11,6 +11,7 @@ namespace Project.Tests.Builders
         private Transform _entrance = null;
         private TestCollectible _diamond = null;
         private TestCollectible _key = null;
+        private TestDoor _door = null;
         private TestToggleBlock[] _toggleBlocks = null;
         private TestButton[] _buttons = null;
         private TestPlayer _playerPrefab = null;
@@ -30,6 +31,12 @@ namespace Project.Tests.Builders
         public LevelBuilder WithKey(TestCollectible key)
         {
             _key = key;
+            return this;
+        }
+
+        public LevelBuilder WithDoor(TestDoor door)
+        {
+            _door = door;
             return this;
         }
 
@@ -58,6 +65,7 @@ namespace Project.Tests.Builders
             level.Entrance = _entrance ? _entrance : new GameObject().transform;
             level.Diamond = _diamond ? _diamond : A.Collectible;
             level.Key = _key ? _key : A.Collectible;
+            level.Door = _door ? _door : A.Door;
             if (_toggleBlocks != null) level.SetToggleBlocks(_toggleBlocks);
             if (_buttons != null) level.SetButtons(_buttons);
             level.PlayerPrefab = _playerPrefab ? _playerPrefab : A.Player;

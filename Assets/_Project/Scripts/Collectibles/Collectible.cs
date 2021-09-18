@@ -48,14 +48,13 @@ namespace Project.Collectibles
 
         public void SaveState()
         {
-            if (_wasCollected) _collectionWasSaved = true;
+            _collectionWasSaved = _wasCollected;
         }
 
         public void ResetState()
         {
-            if (!_collectionWasSaved) return;
-            _wasCollected = false;
-            _collider.enabled = true;
+            _wasCollected = _collectionWasSaved;
+            _collider.enabled = !_wasCollected;
             if (_onCollectedChannel) _onCollectedChannel.Raise(_spriteRenderer);
             _animator.SetWasCollected(_wasCollected);
         }

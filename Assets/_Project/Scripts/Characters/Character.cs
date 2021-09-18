@@ -19,6 +19,7 @@ namespace Project.Characters
         [SerializeField] protected LayerChecker _ladderChecker = null;
         [SerializeField] protected CharacterAnimator _animator = null;
         [SerializeField] protected FloatEventChannelSO _onCharacterHealthChangedChannel = null;
+        [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -144,6 +145,7 @@ namespace Project.Characters
         public void Die()
         {
             _isDead = true;
+            if (_onCharacterDiedChannel) _onCharacterDiedChannel.Raise();
         }
 
         public void Spawn(Transform spawnPoint)
@@ -151,6 +153,7 @@ namespace Project.Characters
             _isDead = false;
             _health = _data.MaxHealth;
             transform.position = spawnPoint.position;
+            _rigidbody.velocity = new Vector2();
             if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
         }
 

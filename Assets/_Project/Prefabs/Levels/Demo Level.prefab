@@ -4569,6 +4569,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2159780519376227194}
     - target: {fileID: 6861126725864180545, guid: 7fc5f1355a23242ae85b106c053ea596, type: 3}
+      propertyPath: _door
+      value: 
+      objectReference: {fileID: 2130163029374322875}
+    - target: {fileID: 6861126725864180545, guid: 7fc5f1355a23242ae85b106c053ea596, type: 3}
       propertyPath: _diamond
       value: 
       objectReference: {fileID: 8183571176244967459}
