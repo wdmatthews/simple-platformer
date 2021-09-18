@@ -52,6 +52,21 @@ MonoBehaviour:
   _collider: {fileID: 2785354612362489591}
   _bottomRenderer: {fileID: 3979386195296407496}
   _topRenderer: {fileID: 2937710855337888620}
+  _onEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: b3263a4685b664e40ba0e981cf40d28e, type: 2}
+        m_TargetAssemblyTypeName: Project.Levels.LevelManagerSO, Project.Levels
+        m_MethodName: CompleteLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &2785354612362489591
 BoxCollider2D:
   m_ObjectHideFlags: 0

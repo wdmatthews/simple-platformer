@@ -20,6 +20,7 @@ namespace Project.Levels
         [SerializeField] protected Player _playerPrefab = null;
         [SerializeField] protected TransformEventChannelSO _onCheckpointCollectedChannel = null;
         [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
+        [SerializeField] protected BoolEventChannelSO _onLevelCompletedChannel = null;
 
         protected int _index = 0;
         protected SaveDataLevel _saveData = null;
@@ -83,6 +84,14 @@ namespace Project.Levels
             {
                 _buttons[i].ResetState();
             }
+        }
+
+        public void Complete()
+        {
+            _saveData.WasCompleted = true;
+            bool diamondWasCollected = _diamond.WasCollected;
+            if (diamondWasCollected) _saveData.DiamondWasCollected = true;
+            if (_onLevelCompletedChannel) _onLevelCompletedChannel.Raise(diamondWasCollected);
         }
     }
 }

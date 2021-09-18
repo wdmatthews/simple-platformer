@@ -38,5 +38,11 @@ namespace Project.Levels
                 _saveManager.SaveData.Levels[i] = new SaveDataLevel();
             }
         }
+
+        public void CompleteLevel()
+        {
+            _loadedLevel.Complete();
+            _saveManager.Save();
+        }
     }
 }

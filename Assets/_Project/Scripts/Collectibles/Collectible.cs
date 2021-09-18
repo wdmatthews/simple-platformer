@@ -21,6 +21,7 @@ namespace Project.Collectibles
 
         protected int _characterLayer = 0;
         protected bool _wasCollected = false;
+        public bool WasCollected => _wasCollected;
         protected bool _collectionWasSaved = false;
 
         protected void Awake()
