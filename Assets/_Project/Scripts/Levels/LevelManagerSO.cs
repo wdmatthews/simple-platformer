@@ -44,5 +44,7 @@ namespace Project.Levels
             _loadedLevel.Complete();
             _saveManager.Save();
         }
+
+        public void RestartLevel() => _loadedLevel.Restart();
     }
 }

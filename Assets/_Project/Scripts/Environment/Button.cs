@@ -63,12 +63,12 @@ namespace Project.Environment
             _wasPressedWhenSaved = _wasPressed;
         }
 
-        public void ResetState()
+        public void ResetState(bool ignoreSavedState = false)
         {
             if (_resetOnTriggerExit) return;
-            _wasPressed = _wasPressedWhenSaved;
-            _collider.enabled = !_wasPressedWhenSaved;
-            _renderer.sprite = _wasPressedWhenSaved ? _pressedSprite : _normalSprite;
+            _wasPressed = !ignoreSavedState && _wasPressedWhenSaved;
+            _collider.enabled = !_wasPressed;
+            _renderer.sprite = _wasPressed ? _pressedSprite : _normalSprite;
         }
     }
 }

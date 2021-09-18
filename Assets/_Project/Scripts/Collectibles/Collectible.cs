@@ -52,10 +52,11 @@ namespace Project.Collectibles
             _collectionWasSaved = _wasCollected;
         }
 
-        public void ResetState()
+        public void ResetState(bool ignoreSavedState = false)
         {
-            _wasCollected = _collectionWasSaved;
+            _wasCollected = !ignoreSavedState && _collectionWasSaved;
             _collider.enabled = !_wasCollected;
+            if (ignoreSavedState) _animator.SetWasCollected(true);
             if (_onCollectedChannel) _onCollectedChannel.Raise(_spriteRenderer);
             _animator.SetWasCollected(_wasCollected);
         }

@@ -57,9 +57,9 @@ namespace Project.Environment
             _wasUnlockedWhenSaved = _wasUnlocked;
         }
 
-        public void ResetState()
+        public void ResetState(bool ignoreSavedState = false)
         {
-            _wasUnlocked = _wasUnlockedWhenSaved;
+            _wasUnlocked = !ignoreSavedState && _wasUnlockedWhenSaved;
             _collider.enabled = _wasUnlocked;
 
             if (_bottomRenderer && _topRenderer)

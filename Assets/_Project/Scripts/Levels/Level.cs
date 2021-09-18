@@ -46,7 +46,6 @@ namespace Project.Levels
             _saveData = saveData;
             _player = Instantiate(_playerPrefab, _entrance.position, _entrance.rotation);
             _player.name = _playerPrefab.name;
-
             if (_saveData.DiamondWasCollected) _diamond.Collect();
         }
 
@@ -92,6 +91,29 @@ namespace Project.Levels
             bool diamondWasCollected = _diamond.WasCollected;
             if (diamondWasCollected) _saveData.DiamondWasCollected = true;
             if (_onLevelCompletedChannel) _onLevelCompletedChannel.Raise(diamondWasCollected);
+            _player.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+
+        public void Restart()
+        {
+            gameObject.SetActive(true);
+            _player.gameObject.SetActive(true);
+            _player.Spawn(_entrance);
+            _diamond.ResetState(true);
+            if (_saveData.DiamondWasCollected) _diamond.Collect();
+            _key.ResetState(true);
+            _door.ResetState(true);
+
+            for (int i = _toggleBlocks.Length - 1; i >= 0; i--)
+            {
+                _toggleBlocks[i].ResetState(true);
+            }
+
+            for (int i = _buttons.Length - 1; i >= 0; i--)
+            {
+                _buttons[i].ResetState(true);
+            }
         }
     }
 }

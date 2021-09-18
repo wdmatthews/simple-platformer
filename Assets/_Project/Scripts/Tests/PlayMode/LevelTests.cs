@@ -174,5 +174,77 @@ namespace Project.Tests.PlayMode
             level.ResetProgress();
             Assert.AreEqual(false, buttons[0].WasPressed);
         }
+
+        [Test]
+        public void Restart_SpawnsPlayerAtEntrance()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.Player.transform.position = new Vector3(1, 0, 0);
+            level.Restart();
+            Assert.AreEqual(level.Entrance.position, level.Player.transform.position);
+        }
+
+        [Test]
+        public void Restart_ResetsDiamondStateToNotCollected()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.Diamond.Collect();
+            level.Restart();
+            Assert.AreEqual(false, level.Diamond.WasCollected);
+        }
+
+        [Test]
+        public void Restart_ResetsDiamondStateToCollectedWhenSaved()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel(false, true));
+            level.Restart();
+            Assert.AreEqual(true, level.Diamond.WasCollected);
+        }
+
+        [Test]
+        public void Restart_ResetsKeyState()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.Key.Collect();
+            level.Restart();
+            Assert.AreEqual(false, level.Key.WasCollected);
+        }
+
+        [Test]
+        public void Restart_ResetsDoorState()
+        {
+            TestLevel level = A.Level;
+            level.Initialize(0, new SaveDataLevel());
+            level.Door.Unlock();
+            level.Restart();
+            Assert.AreEqual(false, level.Door.WasUnlocked);
+        }
+
+        [Test]
+        public void Restart_ResetsToggleStates()
+        {
+            TestToggleBlock[] toggleBlocks = new TestToggleBlock[] { A.ToggleBlock };
+            TestLevel level = A.Level.WithToggleBlocks(toggleBlocks);
+            level.Initialize(0, new SaveDataLevel());
+            toggleBlocks[0].Toggle();
+            level.Restart();
+            Assert.AreEqual(true, toggleBlocks[0].IsOn);
+        }
+
+        [Test]
+        public void Restart_ResetsButtonStates()
+        {
+            TestButton[] buttons = new TestButton[] { A.Button };
+            buttons[0].ResetOnTriggerExit = false;
+            TestLevel level = A.Level.WithButtons(buttons);
+            level.Initialize(0, new SaveDataLevel());
+            buttons[0].Press();
+            level.Restart();
+            Assert.AreEqual(false, buttons[0].WasPressed);
+        }
     }
 }

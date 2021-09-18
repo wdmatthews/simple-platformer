@@ -34,9 +34,9 @@ namespace Project.Environment
             _wasOnWhenSaved = _isOn;
         }
 
-        public void ResetState()
+        public void ResetState(bool ignoreSavedState = false)
         {
-            _isOn = _wasOnWhenSaved;
+            _isOn = ignoreSavedState || _wasOnWhenSaved;
             _collider.enabled = _isOn;
             _renderer.sprite = _isOn ? _onSprite : _offSprite;
         }
