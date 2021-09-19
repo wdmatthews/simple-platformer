@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d81fcbd0992d48048f64dfe5537e279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _resetOnTriggerExit: 1
   _characterLayerName: Character
   _normalSprite: {fileID: 21300000, guid: 5744e3348a9ad490c804cb2bc39a9edb, type: 3}
   _pressedSprite: {fileID: 21300000, guid: c381b8ad2cd394ffb88ab34acd9bd55f, type: 3}
@@ -65,6 +66,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _pressClip: {fileID: 8300000, guid: 302e6693f3313f34b86a9ee262cbdf1e, type: 3}
+  _audioManager: {fileID: 11400000, guid: 6eb9d60777fe3499a92fa6f9e484bf0e, type: 2}
 --- !u!61 &8499199382017509926
 BoxCollider2D:
   m_ObjectHideFlags: 0

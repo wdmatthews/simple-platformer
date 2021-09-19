@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Project.Audio;
 
 namespace Project.Environment
 {
@@ -15,6 +16,9 @@ namespace Project.Environment
         [SerializeField] protected SpriteRenderer _bottomRenderer = null;
         [SerializeField] protected SpriteRenderer _topRenderer = null;
         [SerializeField] protected UnityEvent _onEnter = null;
+        [SerializeField] protected AudioClip _openClip = null;
+        [SerializeField] protected AudioClip _enterClip = null;
+        [SerializeField] protected AudioManagerSO _audioManager = null;
 
         protected int _characterLayer = 0;
         protected bool _wasUnlocked = false;
@@ -43,6 +47,7 @@ namespace Project.Environment
             _collider.enabled = true;
             if (_bottomRenderer) _bottomRenderer.sprite = _unlockedBottomSprite;
             if (_topRenderer) _topRenderer.sprite = _unlockedTopSprite;
+            if (_audioManager) _audioManager.PlaySFX(_openClip);
         }
 
         public void Enter()
@@ -50,6 +55,7 @@ namespace Project.Environment
             _wasEntered = true;
             _collider.enabled = false;
             _onEnter?.Invoke();
+            if (_audioManager) _audioManager.PlaySFX(_enterClip);
         }
 
         public void SaveState()

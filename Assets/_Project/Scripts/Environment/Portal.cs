@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.Audio;
 
 namespace Project.Environment
 {
@@ -12,6 +13,8 @@ namespace Project.Environment
         [SerializeField] protected float _spinSpeed = 1f;
         [SerializeField] protected int _spinDirection = 1;
         [SerializeField] protected Transform _linkedPortal = null;
+        [SerializeField] protected AudioClip _teleportClip = null;
+        [SerializeField] protected AudioManagerSO _audioManager = null;
 
         protected int _characterLayer = 0;
 
@@ -36,6 +39,7 @@ namespace Project.Environment
         public void Enter(Transform character)
         {
             character.transform.position = _linkedPortal.transform.position;
+            if (_audioManager) _audioManager.PlaySFX(_teleportClip);
         }
     }
 }

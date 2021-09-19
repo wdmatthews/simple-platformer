@@ -35,14 +35,14 @@ namespace Project.Collectibles
 
         protected void OnTriggerEnter2D(Collider2D collision)
         {
-            if (!_wasCollected && collision.gameObject.layer == _characterLayer) Collect();
+            if (!_wasCollected && collision.gameObject.layer == _characterLayer) Collect(true);
         }
 
-        public void Collect()
+        public void Collect(bool invokeOnCollected = false)
         {
             _wasCollected = true;
             _collider.enabled = false;
-            _onCollected?.Invoke(transform);
+            if (invokeOnCollected) _onCollected?.Invoke(transform);
             if (_onCollectedChannel) _onCollectedChannel.Raise(_spriteRenderer);
             if (_onCheckpointCollectedChannel) _onCheckpointCollectedChannel.Raise(transform);
             _animator.SetWasCollected(_wasCollected);

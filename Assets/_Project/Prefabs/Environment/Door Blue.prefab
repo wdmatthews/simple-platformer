@@ -67,6 +67,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  _openClip: {fileID: 8300000, guid: 026076d371cdc604482a1794035cb5e2, type: 3}
+  _enterClip: {fileID: 8300000, guid: 324f5296ef639b741abcd771cda87612, type: 3}
+  _audioManager: {fileID: 11400000, guid: 6eb9d60777fe3499a92fa6f9e484bf0e, type: 2}
 --- !u!61 &2785354612362489591
 BoxCollider2D:
   m_ObjectHideFlags: 0

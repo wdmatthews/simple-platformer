@@ -2,6 +2,7 @@
     "name": "Project.Environment",
     "rootNamespace": "Project.Environment",
     "references": [
+        "GUID:330301f96d64445639b473bb1344ff80",
         "GUID:e139f6139f1444b26b7d562448cfa973",
         "GUID:8b461958face34c8abe0f5b270281691"
     ],

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using Project.Audio;
 
 namespace Project.Environment
 {
@@ -16,6 +17,8 @@ namespace Project.Environment
         [SerializeField] protected BoxCollider2D _collider = null;
         [SerializeField] protected SpriteRenderer _renderer = null;
         [SerializeField] protected UnityEvent _onPress = null;
+        [SerializeField] protected AudioClip _pressClip = null;
+        [SerializeField] protected AudioManagerSO _audioManager = null;
 
         protected int _characterLayer = 0;
         protected bool _wasPressed = false;
@@ -48,6 +51,7 @@ namespace Project.Environment
             if (!_resetOnTriggerExit) _collider.enabled = false;
             _onPress?.Invoke();
             _renderer.sprite = _pressedSprite;
+            if (_audioManager) _audioManager.PlaySFX(_pressClip);
         }
 
         public void Reset()

@@ -3,6 +3,7 @@
     "rootNamespace": "Project.Characters",
     "references": [
         "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:330301f96d64445639b473bb1344ff80",
         "GUID:8b461958face34c8abe0f5b270281691"
     ],
     "includePlatforms": [],

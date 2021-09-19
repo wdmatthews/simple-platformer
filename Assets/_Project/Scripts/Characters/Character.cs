@@ -1,4 +1,5 @@
 using UnityEngine;
+using Project.Audio;
 using Project.Events;
 
 namespace Project.Characters
@@ -22,6 +23,9 @@ namespace Project.Characters
         [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
         [SerializeField] protected EventChannelSO _onPausedChannel = null;
         [SerializeField] protected EventChannelSO _onResumedChannel = null;
+        [SerializeField] protected AudioClip _damageClip = null;
+        [SerializeField] protected AudioClip _deathClip = null;
+        [SerializeField] protected AudioManagerSO _audioManager = null;
 
         protected float _moveDirection = 0;
         protected bool _shouldJump = false;
@@ -150,13 +154,18 @@ namespace Project.Characters
             if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
 
             if (Mathf.Approximately(_health, 0)) Die();
-            else MakeInvincibile();
+            else
+            {
+                MakeInvincibile();
+                if (_audioManager) _audioManager.PlaySFX(_damageClip);
+            }
         }
 
         public void Die()
         {
             _isDead = true;
             if (_onCharacterDiedChannel) _onCharacterDiedChannel.Raise();
+            if (_audioManager) _audioManager.PlaySFX(_deathClip);
         }
 
         public void Spawn(Transform spawnPoint)
