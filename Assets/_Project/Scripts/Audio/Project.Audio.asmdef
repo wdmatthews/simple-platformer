@@ -1,0 +1,16 @@
+{
+    "name": "Project.Audio",
+    "rootNamespace": "Project.Audio",
+    "references": [
+        "GUID:3df7231b9b7e84be58a6dcb8dff57827"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
