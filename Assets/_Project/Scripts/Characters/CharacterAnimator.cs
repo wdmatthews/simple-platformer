@@ -13,7 +13,6 @@ namespace Project.Characters
         private static readonly int _isDroppingParameter = Animator.StringToHash("Is Dropping");
         private static readonly int _isClimbingParameter = Animator.StringToHash("Is Climbing");
         private static readonly int _climbingSpeedParameter = Animator.StringToHash("Climbing Speed");
-        private static readonly int _victoryParameter = Animator.StringToHash("Victory");
 
         [SerializeField] private float _invicibleAlpha = 0.75f;
         [SerializeField] private Animator _animator = null;
@@ -45,12 +44,6 @@ namespace Project.Characters
             Color color = _renderer.color;
             color.a = value ? _invicibleAlpha : 1;
             _renderer.color = color;
-        }
-
-        public void TriggerVictory()
-        {
-            _animator.ResetTrigger(_victoryParameter);
-            _animator.SetTrigger(_victoryParameter);
         }
 
         public void Pause()
