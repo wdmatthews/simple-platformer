@@ -26,6 +26,7 @@ namespace Project.Levels
         protected SaveDataLevel _saveData = null;
         protected Player _player = null;
         protected Transform _lastCheckpoint = null;
+        public Sprite DiamondSprite => _diamond.Sprite;
 
         protected void Awake()
         {

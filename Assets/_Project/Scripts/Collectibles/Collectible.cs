@@ -23,6 +23,7 @@ namespace Project.Collectibles
         protected bool _wasCollected = false;
         public bool WasCollected => _wasCollected;
         protected bool _collectionWasSaved = false;
+        public Sprite Sprite => _spriteRenderer.sprite;
 
         protected void Awake()
         {

@@ -28,7 +28,7 @@ namespace Project.Levels
             _loadedLevel = null;
         }
 
-        protected void FillEmptySave()
+        public void FillEmptySave()
         {
             int levelCount = Levels.Length;
             _saveManager.SaveData.Levels = new SaveDataLevel[levelCount];

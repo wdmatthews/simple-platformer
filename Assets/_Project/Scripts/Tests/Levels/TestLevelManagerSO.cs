@@ -19,7 +19,5 @@ namespace Project.Tests.Levels
                 Levels[i] = levels[i];
             }
         }
-
-        public void TestFillEmptySave() => FillEmptySave();
     }
 }
