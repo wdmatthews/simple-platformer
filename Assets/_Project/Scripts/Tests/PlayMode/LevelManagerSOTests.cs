@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Project.Levels;
 using Project.Tests.Builders;
 using Project.Tests.Levels;
 
@@ -32,6 +33,19 @@ namespace Project.Tests.PlayMode
             levelManager.Load();
             levelManager.Unload();
             Assert.IsNull(levelManager.LoadedLevel);
+        }
+
+        [Test]
+        public void LoadNextLevel_UnloadsIncrementsAndLoads()
+        {
+            TestLevelManagerSO levelManager = A.LevelManagerSO
+                .WithLevels(new TestLevel[] { A.Level, A.Level });
+            levelManager.Load();
+            Level firstLevel = levelManager.LoadedLevel;
+            levelManager.LoadNextLevel();
+            Assert.AreNotEqual(firstLevel, levelManager.LoadedLevel);
+            Assert.IsNotNull(levelManager.LoadedLevel);
+            Assert.AreEqual(1, levelManager.LevelIndexToLoad);
         }
     }
 }

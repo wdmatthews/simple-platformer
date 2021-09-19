@@ -46,5 +46,12 @@ namespace Project.Levels
         }
 
         public void RestartLevel() => _loadedLevel.Restart();
+
+        public void LoadNextLevel()
+        {
+            Unload();
+            LevelIndexToLoad++;
+            Load();
+        }
     }
 }
