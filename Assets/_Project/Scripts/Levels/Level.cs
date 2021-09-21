@@ -17,6 +17,8 @@ namespace Project.Levels
         [SerializeField] protected Door _door = null;
         [SerializeField] protected ToggleBlock[] _toggleBlocks = { };
         [SerializeField] protected Button[] _buttons = { };
+        [SerializeField] protected Collectible[] _checkpoints = { };
+        [SerializeField] protected Saw[] _saws = { };
         [SerializeField] protected Player _playerPrefab = null;
         [SerializeField] protected TransformEventChannelSO _onCheckpointCollectedChannel = null;
         [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
@@ -89,6 +91,11 @@ namespace Project.Levels
             {
                 _buttons[i].ResetState();
             }
+
+            for (int i = _saws.Length - 1; i >= 0; i--)
+            {
+                _saws[i].ResetState();
+            }
         }
 
         public void Complete()
@@ -118,6 +125,16 @@ namespace Project.Levels
             for (int i = _buttons.Length - 1; i >= 0; i--)
             {
                 _buttons[i].ResetState(true);
+            }
+
+            for (int i = _checkpoints.Length - 1; i >= 0; i--)
+            {
+                _checkpoints[i].ResetState(true);
+            }
+
+            for (int i = _saws.Length - 1; i >= 0; i--)
+            {
+                _saws[i].ResetState();
             }
         }
     }

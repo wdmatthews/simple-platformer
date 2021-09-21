@@ -34,7 +34,7 @@ namespace Project.Environment
             if (_onResumedChannel) _onResumedChannel.OnRaised += OnGameResumed;
         }
 
-        protected void OnDestroy()
+        protected override void OnDestroy()
         {
             if (_onPausedChannel) _onPausedChannel.OnRaised -= OnGamePaused;
             if (_onResumedChannel) _onResumedChannel.OnRaised -= OnGameResumed;
@@ -90,6 +90,14 @@ namespace Project.Environment
         public void OnGameResumed()
         {
             enabled = true;
+        }
+
+        public void ResetState()
+        {
+            _currentWaypointIndex = 1;
+            _currentWaypoint = _waypoints[_currentWaypointIndex];
+            transform.position = _waypoints[0];
+            Resume();
         }
 
 #if UNITY_EDITOR
