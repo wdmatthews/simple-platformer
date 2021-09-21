@@ -26,7 +26,7 @@ namespace Project.UI
             _checkmarkIcon.gameObject.SetActive(saveData.WasCompleted);
             if (saveData.DiamondWasCollected) _diamondIcon.sprite = level.DiamondSprite;
             _label.text = level.name;
-            _playButton.interactable = saveData.WasCompleted
+            _playButton.interactable = saveData.WasCompleted || index == 0
                 || (index > 0 && _saveManager.SaveData.Levels[index - 1].WasCompleted);
         }
 
