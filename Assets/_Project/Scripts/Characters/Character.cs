@@ -31,6 +31,7 @@ namespace Project.Characters
         protected bool _shouldJump = false;
         protected float _health = 0;
         protected bool _isDead = false;
+        public bool IsDead => _isDead;
         protected bool _isInvincible = false;
         protected float _invincibleTimer = 0;
         protected bool _shouldDrop = false;
@@ -149,7 +150,7 @@ namespace Project.Characters
 
         public void TakeDamage(float amount)
         {
-            if (_isInvincible) return;
+            if (_isInvincible || _isDead) return;
             _health = Mathf.Clamp(_health - amount, 0, _data.MaxHealth);
             if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
 
@@ -175,6 +176,7 @@ namespace Project.Characters
             transform.position = spawnPoint.position;
             _rigidbody.velocity = new Vector2();
             if (_onCharacterHealthChangedChannel) _onCharacterHealthChangedChannel.Raise(_health);
+            RemoveInvincibility();
         }
 
         public void MakeInvincibile()

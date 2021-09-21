@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 855a2527bb6a24bf894991f9b387dbb0, type: 3}
   m_Name: Saw
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 0.5
   MoveSpeed: 1
   PauseDuration: 2

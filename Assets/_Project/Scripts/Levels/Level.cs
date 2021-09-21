@@ -47,7 +47,12 @@ namespace Project.Levels
             _saveData = saveData;
             _player = Instantiate(_playerPrefab, _entrance.position, _entrance.rotation);
             _player.name = _playerPrefab.name;
-            if (_saveData.DiamondWasCollected) _diamond.Collect();
+
+            if (_saveData.DiamondWasCollected)
+            {
+                _diamond.Collect();
+                _diamond.SaveState();
+            }
         }
 
         public void SaveProgress(Transform checkpoint)
@@ -101,8 +106,7 @@ namespace Project.Levels
             gameObject.SetActive(true);
             _player.gameObject.SetActive(true);
             _player.Spawn(_entrance);
-            _diamond.ResetState(true);
-            if (_saveData.DiamondWasCollected) _diamond.Collect();
+            if (!_saveData.DiamondWasCollected) _diamond.ResetState(true);
             _key.ResetState(true);
             _door.ResetState(true);
 

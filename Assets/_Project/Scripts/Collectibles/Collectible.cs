@@ -57,7 +57,7 @@ namespace Project.Collectibles
         {
             _wasCollected = !ignoreSavedState && _collectionWasSaved;
             _collider.enabled = !_wasCollected;
-            if (ignoreSavedState) _animator.SetWasCollected(true);
+            _animator.SetWasCollected(!_wasCollected);
             if (_onCollectedChannel) _onCollectedChannel.Raise(_spriteRenderer);
             _animator.SetWasCollected(_wasCollected);
         }

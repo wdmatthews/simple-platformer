@@ -12,7 +12,6 @@ namespace Project.Tests.Characters
         public float MoveDirection => _moveDirection;
         public bool ShouldJump => _shouldJump;
         public float Health => _health;
-        public bool IsDead => _isDead;
         public bool IsInvincible => _isInvincible;
         public float InvincibleTimer => _invincibleTimer;
     }

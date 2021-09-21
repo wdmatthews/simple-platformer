@@ -55,7 +55,9 @@ MonoBehaviour:
   _checkmarkIcon: {fileID: 7168436100242180398}
   _diamondIcon: {fileID: 7168436099949798166}
   _label: {fileID: 7168436100341198432}
+  _playButton: {fileID: 3944799733266256076}
   _levelManager: {fileID: 11400000, guid: b3263a4685b664e40ba0e981cf40d28e, type: 2}
+  _saveManager: {fileID: 11400000, guid: 83422a86f1a894119aed04b5b5beb53d, type: 2}
   _sceneManager: {fileID: 11400000, guid: 71e0a89a2dc014830b3cc2ca92e54456, type: 2}
 --- !u!1 &7168436099949798164
 GameObject:
@@ -487,3 +489,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6180584467400768148, guid: 66a11eec61a7f4b4f97fd5e488dba8a7, type: 3}
   m_PrefabInstance: {fileID: 7168436100558236255}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3944799733266256076 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6180584467400768147, guid: 66a11eec61a7f4b4f97fd5e488dba8a7, type: 3}
+  m_PrefabInstance: {fileID: 7168436100558236255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

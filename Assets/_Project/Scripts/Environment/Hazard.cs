@@ -1,5 +1,6 @@
 using UnityEngine;
 using Project.Characters;
+using Project.Events;
 
 namespace Project.Environment
 {
@@ -7,6 +8,7 @@ namespace Project.Environment
     {
         [SerializeField] protected HazardSO _data = null;
         [SerializeField] protected string _characterLayerName = "Character";
+        [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
 
         protected int _characterLayer = 0;
         protected Character _characterInTrigger = null;
@@ -14,11 +16,17 @@ namespace Project.Environment
         protected virtual void Awake()
         {
             _characterLayer = LayerMask.NameToLayer(_characterLayerName);
+            _onCharacterDiedChannel.OnRaised += ResetCharacterInTrigger;
         }
 
         protected virtual void Update()
         {
             if (_characterInTrigger) DamageCharacter(_characterInTrigger);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            _onCharacterDiedChannel.OnRaised -= ResetCharacterInTrigger;
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)
@@ -31,7 +39,9 @@ namespace Project.Environment
             }
         }
 
-        protected void OnTriggerExit2D(Collider2D collision)
+        protected void OnTriggerExit2D(Collider2D collision) => ResetCharacterInTrigger();
+
+        public void ResetCharacterInTrigger()
         {
             _characterInTrigger = null;
         }

@@ -31,7 +31,7 @@ namespace Project.UI
         {
             int levelIndex = _levelManager.LevelIndexToLoad;
             bool isLastLevel = levelIndex == _levelManager.Levels.Length - 1;
-            _headerText.text = $"Level {levelIndex + 1} Completed";
+            _headerText.text = $"Level {_levelManager.Levels[levelIndex].name} Completed";
             _diamondStatusText.text = $"Diamond Was{(diamondWasCollected ? " " : " Not ")}Collected";
             _nextButton.gameObject.SetActive(!isLastLevel);
             _creditsButton.gameObject.SetActive(isLastLevel);

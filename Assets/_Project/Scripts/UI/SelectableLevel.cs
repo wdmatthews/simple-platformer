@@ -13,7 +13,9 @@ namespace Project.UI
         [SerializeField] private Image _checkmarkIcon = null;
         [SerializeField] private Image _diamondIcon = null;
         [SerializeField] private TextMeshProUGUI _label = null;
+        [SerializeField] private Button _playButton = null;
         [SerializeField] private LevelManagerSO _levelManager = null;
+        [SerializeField] private SaveManagerSO _saveManager = null;
         [SerializeField] private SceneManagerSO _sceneManager = null;
 
         private int _index = 0;
@@ -23,7 +25,9 @@ namespace Project.UI
             _index = index;
             _checkmarkIcon.gameObject.SetActive(saveData.WasCompleted);
             if (saveData.DiamondWasCollected) _diamondIcon.sprite = level.DiamondSprite;
-            _label.text = $"Level {_index + 1}";
+            _label.text = level.name;
+            _playButton.interactable = saveData.WasCompleted
+                || (index > 0 && _saveManager.SaveData.Levels[index - 1].WasCompleted);
         }
 
         public void Play()
