@@ -139,10 +139,13 @@ MonoBehaviour:
   _door: {fileID: 0}
   _toggleBlocks: []
   _buttons: []
+  _checkpoints: []
+  _saws: []
   _playerPrefab: {fileID: 17290368700161099, guid: e37721a3ce1d740b59319d2908fe6e0e, type: 3}
   _onCheckpointCollectedChannel: {fileID: 11400000, guid: fa8ef4ea30f9a44b481a9adc5d5f9aea, type: 2}
   _onCharacterDiedChannel: {fileID: 11400000, guid: 73d4267592a3b412da9c4adf20c80372, type: 2}
   _onLevelCompletedChannel: {fileID: 11400000, guid: 4b9f429da6f104264ba9a7271e290f3e, type: 2}
+  _onLevelRestartedChannel: {fileID: 11400000, guid: 1ac6f83eb74dd4dd8ba9b28832042241, type: 2}
 --- !u!156049354 &468290911523026003
 Grid:
   m_ObjectHideFlags: 0
@@ -403,6 +406,7 @@ MonoBehaviour:
   _data: {fileID: 11400000, guid: aa525fe8043ba4a1b95c326967c7c5e3, type: 2}
   _characterLayerName: Character
   _onCharacterDiedChannel: {fileID: 11400000, guid: 73d4267592a3b412da9c4adf20c80372, type: 2}
+  _onLevelRestartedChannel: {fileID: 11400000, guid: 1ac6f83eb74dd4dd8ba9b28832042241, type: 2}
 --- !u!1839735485 &468290911892593407
 Tilemap:
   m_ObjectHideFlags: 0

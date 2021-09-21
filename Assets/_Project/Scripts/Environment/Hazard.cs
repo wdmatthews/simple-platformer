@@ -9,6 +9,7 @@ namespace Project.Environment
         [SerializeField] protected HazardSO _data = null;
         [SerializeField] protected string _characterLayerName = "Character";
         [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
+        [SerializeField] protected EventChannelSO _onLevelRestartedChannel = null;
 
         protected int _characterLayer = 0;
         protected Character _characterInTrigger = null;
@@ -16,7 +17,8 @@ namespace Project.Environment
         protected virtual void Awake()
         {
             _characterLayer = LayerMask.NameToLayer(_characterLayerName);
-            _onCharacterDiedChannel.OnRaised += ResetCharacterInTrigger;
+            if (_onCharacterDiedChannel) _onCharacterDiedChannel.OnRaised += ResetCharacterInTrigger;
+            if (_onLevelRestartedChannel) _onLevelRestartedChannel.OnRaised += ResetCharacterInTrigger;
         }
 
         protected virtual void Update()
@@ -26,7 +28,8 @@ namespace Project.Environment
 
         protected virtual void OnDestroy()
         {
-            _onCharacterDiedChannel.OnRaised -= ResetCharacterInTrigger;
+            if (_onCharacterDiedChannel) _onCharacterDiedChannel.OnRaised -= ResetCharacterInTrigger;
+            if (_onLevelRestartedChannel) _onLevelRestartedChannel.OnRaised -= ResetCharacterInTrigger;
         }
 
         protected void OnTriggerEnter2D(Collider2D collision)

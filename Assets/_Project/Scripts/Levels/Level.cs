@@ -23,6 +23,7 @@ namespace Project.Levels
         [SerializeField] protected TransformEventChannelSO _onCheckpointCollectedChannel = null;
         [SerializeField] protected EventChannelSO _onCharacterDiedChannel = null;
         [SerializeField] protected BoolEventChannelSO _onLevelCompletedChannel = null;
+        [SerializeField] protected EventChannelSO _onLevelRestartedChannel = null;
 
         protected int _index = 0;
         protected SaveDataLevel _saveData = null;
@@ -136,6 +137,8 @@ namespace Project.Levels
             {
                 _saws[i].ResetState();
             }
+
+            if (_onLevelRestartedChannel) _onLevelRestartedChannel.Raise();
         }
     }
 }
